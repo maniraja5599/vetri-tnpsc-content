@@ -1,0 +1,51 @@
+# Merges the daily current-affairs PR at 12:00 PM IST unless you close it
+# or add the "hold" label before then. Only merges if .github/check.js passes.
+name: Auto-merge daily current affairs
+
+on:
+  schedule:
+    - cron: '30 6 * * *' # 06:30 UTC = 12:00 PM IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check and merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp .github/check.js /tmp/check.js
+          gh label create hold --color B60205 --description "Do not auto-merge" --force >/dev/null
+          prs=$(gh pr list --state open --base main --json number,headRefName,title,labels \
+            --jq '[.[] | select(.headRefName | startswith("ca-")) | select(.title | startswith("Current affairs")) | select([.labels[].name] | index("hold") | not)] | sort_by(.number) | .[].number')
+          if [ -z "$prs" ]; then echo "No PR to merge."; exit 0; fi
+          for n in $prs; do
+            echo "::group::PR #$n"
+            git fetch -q origin main "pull/$n/head:pr-$n"
+            files=$(git diff --name-only origin/main...pr-$n)
+            if [ "$files" != "content.json" ]; then
+              gh pr comment "$n" -b "Not auto-merged: this PR changes files other than content.json."
+              gh pr edit "$n" --add-label hold
+            elif git show origin/main:content.json > /tmp/base.json && git show pr-$n:content.json > /tmp/new.json && node /tmp/check.js /tmp/base.json /tmp/new.json; then
+              if gh pr merge "$n" --squash --delete-branch; then
+                git fetch -q origin main
+                echo "Merged #$n"
+              else
+                gh pr comment "$n" -b "Not auto-merged: merge failed (probably a conflict with main)."
+                gh pr edit "$n" --add-label hold
+              fi
+            else
+              gh pr comment "$n" -b "Not auto-merged: the content check failed. See the Actions log."
+              gh pr edit "$n" --add-label hold
+            fi
+            echo "::endgroup::"
+          done
