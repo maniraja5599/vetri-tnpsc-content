@@ -1,5 +1,8 @@
 # Merges the daily current-affairs PR at 12:00 PM IST unless you close it
-# or add the "hold" label before then. Only merges if .github/check.js passes.
+# or add the "hold" label before then. Merges only if:
+#   - the reviewer routine (or the owner) commented "VERIFIED <latest commit sha>",
+#     or the owner added the "verified" label, and
+#   - .github/check.js passes.
 name: Auto-merge daily current affairs
 
 on:
@@ -23,7 +26,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp .github/check.js /tmp/check.js
+          cp .github/check.js .github/approved.js /tmp/
           gh label create hold --color B60205 --description "Do not auto-merge" --force >/dev/null
           prs=$(gh pr list --state open --base main --json number,headRefName,title,labels \
             --jq '[.[] | select(.headRefName | startswith("ca-")) | select(.title | startswith("Current affairs")) | select([.labels[].name] | index("hold") | not)] | sort_by(.number) | .[].number')
@@ -35,6 +38,8 @@ jobs:
             if [ "$files" != "content.json" ]; then
               gh pr comment "$n" -b "Not auto-merged: this PR changes files other than content.json."
               gh pr edit "$n" --add-label hold
+            elif ! gh pr view "$n" --json headRefOid,comments,labels | node /tmp/approved.js "${{ github.repository_owner }}"; then
+              echo "PR #$n has no VERIFIED comment for its latest commit yet, skipping."
             elif git show origin/main:content.json > /tmp/base.json && git show pr-$n:content.json > /tmp/new.json && node /tmp/check.js /tmp/base.json /tmp/new.json; then
               if gh pr merge "$n" --squash --delete-branch; then
                 git fetch -q origin main
