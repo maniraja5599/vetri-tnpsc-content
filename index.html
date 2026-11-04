@@ -2,10 +2,10 @@
 <html lang="ta">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vetri TNPSC (வெற்றி TNPSC) – Group 4 & 2 Quiz App</title>
-<meta name="description" content="Free daily TNPSC Group 4 & 2 practice in Tamil: Samacheer Kalvi Tamil quizzes, daily current affairs, mock tests and revision.">
-<meta name="theme-color" content="#4338ca">
+<meta name="description" content="TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம், இலக்கியம், தினசரி நடப்பு நிகழ்வுகள் & மாதிரி தேர்வுகள்.">
+<meta name="theme-color" content="#2e1065">
 <link rel="canonical" href="https://vetri-tnpsc-content.vercel.app/">
 <link rel="icon" type="image/png" href="icon-512.png">
 
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vetri-tnpsc-content.vercel.app/">
 <meta property="og:title" content="Vetri TNPSC (வெற்றி TNPSC) – Group 4 & 2 Quiz App">
-<meta property="og:description" content="Free daily TNPSC Group 4 & 2 practice in Tamil: Samacheer Kalvi Tamil quizzes, daily current affairs, mock tests and revision.">
+<meta property="og:description" content="TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம், இலக்கியம், தினசரி நடப்பு நிகழ்வுகள் & மாதிரி தேர்வுகள்.">
 <meta property="og:image" content="https://vetri-tnpsc-content.vercel.app/og-image.png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="500">
@@ -23,49 +23,653 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Vetri TNPSC (வெற்றி TNPSC)">
-<meta name="twitter:description" content="Free daily TNPSC Group 4 & 2 practice in Tamil: Samacheer Kalvi Tamil quizzes, daily current affairs, mock tests and revision.">
+<meta name="twitter:description" content="TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம், இலக்கியம், தினசரி நடப்பு நிகழ்வுகள் & மாதிரி தேர்வுகள்.">
 <meta name="twitter:image" content="https://vetri-tnpsc-content.vercel.app/og-image.png">
 
+<!-- Google Font for sleek modern typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Noto+Sans+Tamil:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Tamil",sans-serif;background:linear-gradient(135deg,#3730a3,#7c3aed);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px 16px;box-sizing:border-box}
-  .card{max-width:580px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:24px;padding:32px 24px;box-shadow:0 20px 40px rgba(0,0,0,0.3)}
-  .app-icon{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,0.3);margin-bottom:12px;border:2px solid rgba(255,255,255,0.2)}
-  .badge{display:inline-block;background:#22c55e;color:#0f291e;font-size:0.8rem;font-weight:800;letter-spacing:0.05em;padding:4px 12px;border-radius:999px;text-transform:uppercase;margin-bottom:12px}
-  h1{font-size:2.3rem;margin:.2em 0 0.4em;font-weight:800;letter-spacing:-0.02em}
-  p{opacity:.95;line-height:1.65;font-size:1.05rem;margin-bottom:24px}
-  .btn-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#4338ca;padding:14px 24px;border-radius:14px;font-weight:700;font-size:1rem;text-decoration:none;transition:all .15s ease;box-shadow:0 4px 14px rgba(0,0,0,0.15)}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.25)}
-  .btn-telegram{background:#0088cc;color:#fff}
-  .btn-telegram:hover{background:#0077b5}
-  .features{margin-top:28px;text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.92rem;opacity:0.92}
-  .feature-item{background:rgba(255,255,255,0.08);padding:10px 14px;border-radius:12px}
-  small{display:block;margin-top:28px;opacity:.75;font-size:0.82rem}
-  small a{color:#fde047;text-decoration:none}
-  small a:hover{text-decoration:underline}
-  @media(max-width:480px){.features{grid-template-columns:1fr}}
+  :root {
+    --bg-deep: #160738;
+    --bg-mid: #2e0f6d;
+    --bg-glow: #5b21b6;
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --card-border: rgba(255, 255, 255, 0.18);
+    --card-glow: rgba(168, 85, 247, 0.25);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(243, 232, 255, 0.88);
+    --text-muted: rgba(216, 180, 254, 0.7);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Tamil', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-deep);
+    background-image: 
+      radial-gradient(circle at 50% 10%, rgba(139, 92, 246, 0.45) 0%, transparent 60%),
+      radial-gradient(circle at 15% 45%, rgba(99, 102, 241, 0.35) 0%, transparent 50%),
+      radial-gradient(circle at 85% 65%, rgba(168, 85, 247, 0.35) 0%, transparent 55%),
+      linear-gradient(180deg, #240b56 0%, #17073b 50%, #0d0322 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 40px 16px 28px;
+  }
+
+  /* Ambient floating elements in the background */
+  .floating-decor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.75;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+  }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-16px) rotate(4deg); }
+  }
+
+  @keyframes floatSlowReverse {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(16px) rotate(-4deg); }
+  }
+
+  @keyframes floatWobble {
+    0%, 100% { transform: translateY(0) rotate(-12deg); }
+    50% { transform: translateY(-14px) rotate(-6deg); }
+  }
+
+  .decor-cap-1 {
+    top: 22%;
+    left: 6%;
+    width: 86px;
+    animation: floatSlow 7s ease-in-out infinite;
+  }
+
+  .decor-cap-2 {
+    bottom: 12%;
+    left: 8%;
+    width: 96px;
+    animation: floatSlowReverse 8.5s ease-in-out infinite;
+  }
+
+  .decor-cap-3 {
+    top: 36%;
+    right: 5%;
+    width: 90px;
+    animation: floatSlow 7.5s ease-in-out infinite 1s;
+  }
+
+  .decor-book-1 {
+    top: 8%;
+    right: 7%;
+    width: 76px;
+    animation: floatSlow 8s ease-in-out infinite 0.5s;
+  }
+
+  .decor-book-2 {
+    top: 12%;
+    left: 4%;
+    width: 70px;
+    animation: floatSlowReverse 9s ease-in-out infinite 1.5s;
+  }
+
+  .decor-pencil-1 {
+    top: 50%;
+    left: 9%;
+    width: 36px;
+    animation: floatWobble 6s ease-in-out infinite;
+  }
+
+  .decor-pencil-2 {
+    bottom: 14%;
+    right: 7%;
+    width: 44px;
+    animation: floatWobble 6.5s ease-in-out infinite 1.5s;
+  }
+
+  /* Small particles */
+  .dot {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(circle, #fde047 0%, rgba(253, 224, 71, 0) 70%);
+    opacity: 0.6;
+    animation: pulseDot 4s ease-in-out infinite alternate;
+  }
+  @keyframes pulseDot {
+    0% { transform: scale(0.8); opacity: 0.3; }
+    100% { transform: scale(1.3); opacity: 0.8; }
+  }
+
+  /* Main container */
+  .container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 680px;
+    text-align: center;
+    margin: auto;
+  }
+
+  /* Top App Branding Pill */
+  .top-brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px 6px 8px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    margin-bottom: 22px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .top-brand-pill:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .top-brand-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+  }
+  .top-brand-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+
+  /* 100% FREE pill */
+  .free-badge-pill {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(147, 51, 234, 0.28);
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #e9d5ff;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 16px rgba(147, 51, 234, 0.25);
+  }
+
+  /* Main Title with 3D gold-white highlight */
+  h1.hero-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 55%, #f1e7fe 75%, #d8b4fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 18px rgba(168, 85, 247, 0.45));
+  }
+
+  p.hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto 32px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Action Buttons */
+  .cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 38px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-googleplay {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 10px 28px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .btn-googleplay:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(255, 255, 255, 0.25), 0 6px 16px rgba(0, 0, 0, 0.3);
+    color: #000000;
+  }
+
+  .btn-telegram {
+    background: linear-gradient(135deg, #0088cc 0%, #00a2ff 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 28px rgba(0, 162, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .btn-telegram:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(0, 162, 255, 0.5), 0 6px 16px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #0099e6 0%, #1ab0ff 100%);
+  }
+
+  .btn-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  /* 2x2 Feature Grid with Glassmorphism */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 36px;
+  }
+
+  .feature-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    padding: 16px 20px;
+    text-align: left;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 24px rgba(168, 85, 247, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .card-icon-wrap {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  }
+
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card-title-main {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .card-title-sub {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 10;
+    margin-top: 10px;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  footer a {
+    color: #fde047;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  footer .sep {
+    margin: 0 6px;
+    opacity: 0.6;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    body {
+      padding: 30px 14px 24px;
+    }
+
+    h1.hero-title {
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+    }
+
+    p.hero-desc {
+      font-size: 0.98rem;
+      margin-bottom: 26px;
+    }
+
+    .cta-group {
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px 22px;
+      font-size: 0.98rem;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .feature-card {
+      padding: 14px 18px;
+      gap: 16px;
+    }
+
+    .card-icon-wrap {
+      width: 52px;
+      height: 52px;
+    }
+
+    .card-title-main, .card-title-sub {
+      font-size: 0.96rem;
+    }
+
+    /* Hide smaller decor on mobile to prevent clutter */
+    .decor-cap-1 { width: 50px; left: 2%; top: 14%; }
+    .decor-cap-2 { display: none; }
+    .decor-cap-3 { width: 54px; right: 2%; top: 28%; }
+    .decor-book-1 { width: 44px; right: 4%; top: 5%; }
+    .decor-book-2 { display: none; }
+    .decor-pencil-1 { display: none; }
+    .decor-pencil-2 { width: 30px; right: 4%; bottom: 6%; }
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <img src="icon-512.png" alt="Vetri TNPSC Logo" class="app-icon">
-  <div><span class="badge">100% Free · TNPSC 2026</span></div>
-  <h1>🎯 Vetri TNPSC (வெற்றி)</h1>
-  <p>TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம், இலக்கியம், தினசரி நடப்பு நிகழ்வுகள் & மாதிரி தேர்வுகள்.</p>
+
+<!-- Floating 3D Background Decorations matching reference -->
+<!-- Graduation Cap Left -->
+<svg class="floating-decor decor-cap-1" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50 10L92 28L50 46L8 28L50 10Z" fill="#5856D6"/>
+  <path d="M50 10L92 28L50 46L8 28L50 10Z" fill="url(#cap-grad-1)"/>
+  <path d="M22 36V54C22 54 34 64 50 64C66 64 78 54 78 54V36" fill="#3634A3"/>
+  <path d="M78 30V56L82 60L84 56V32" fill="#EAB308"/>
+  <circle cx="82" cy="62" r="3" fill="#FACC15"/>
+  <defs>
+    <linearGradient id="cap-grad-1" x1="8" y1="10" x2="92" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#4338CA"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- Graduation Cap Bottom Left -->
+<svg class="floating-decor decor-cap-2" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50 10L92 28L50 46L8 28L50 10Z" fill="#6366F1"/>
+  <path d="M22 36V54C22 54 34 64 50 64C66 64 78 54 78 54V36" fill="#3730A3"/>
+  <path d="M78 30V56L82 60" stroke="#FDE047" stroke-width="3" stroke-linecap="round"/>
+</svg>
+
+<!-- Graduation Cap Right -->
+<svg class="floating-decor decor-cap-3" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50 10L92 28L50 46L8 28L50 10Z" fill="#8B5CF6"/>
+  <path d="M22 36V54C22 54 34 64 50 64C66 64 78 54 78 54V36" fill="#4C1D95"/>
+  <path d="M78 30V54L82 58" stroke="#FACC15" stroke-width="3" stroke-linecap="round"/>
+</svg>
+
+<!-- Book Top Right -->
+<svg class="floating-decor decor-book-1" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 24C26 20 40 26 40 26C40 26 54 20 68 24V64C54 60 40 66 40 66C40 66 26 60 12 64V24Z" fill="#F8FAFC"/>
+  <path d="M40 26V66" stroke="#CBD5E1" stroke-width="2"/>
+  <path d="M10 24C25 19 40 25 40 25V67C40 67 25 61 10 66V24Z" fill="#EEF2F6"/>
+  <path d="M70 24C55 19 40 25 40 25V67C40 67 55 61 70 66V24Z" fill="#FFFFFF"/>
+</svg>
+
+<!-- Book Top Left -->
+<svg class="floating-decor decor-book-2" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M14 20L66 14L62 62L10 68L14 20Z" fill="#EF4444"/>
+  <path d="M18 24L64 18L60 60L14 66L18 24Z" fill="#FDE047"/>
+</svg>
+
+<!-- Pencil Left -->
+<svg class="floating-decor decor-pencil-1" viewBox="0 0 40 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="20" height="50" rx="3" fill="#EAB308"/>
+  <path d="M10 70L20 88L30 70H10Z" fill="#FDE047"/>
+  <path d="M18 84L20 88L22 84H18Z" fill="#1E293B"/>
+  <rect x="10" y="8" width="20" height="12" rx="2" fill="#F43F5E"/>
+</svg>
+
+<!-- Pencil Right -->
+<svg class="floating-decor decor-pencil-2" viewBox="0 0 40 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="20" height="50" rx="3" fill="#FACC15"/>
+  <path d="M10 70L20 88L30 70H10Z" fill="#FEF08A"/>
+  <path d="M18 84L20 88L22 84H18Z" fill="#0F172A"/>
+  <rect x="10" y="8" width="20" height="12" rx="2" fill="#FB7185"/>
+</svg>
+
+<!-- Ambient Glow Dots -->
+<div class="dot" style="top: 15%; left: 20%; width: 12px; height: 12px;"></div>
+<div class="dot" style="top: 35%; right: 18%; width: 14px; height: 14px; animation-delay: 1.2s;"></div>
+<div class="dot" style="bottom: 25%; left: 16%; width: 10px; height: 10px; animation-delay: 2s;"></div>
+<div class="dot" style="bottom: 18%; right: 24%; width: 16px; height: 16px; animation-delay: 0.7s;"></div>
+<div class="dot" style="top: 8%; left: 45%; width: 8px; height: 8px; animation-delay: 1.8s;"></div>
+
+<div class="container">
   
-  <div class="btn-group">
-    <a class="btn" href="https://play.google.com/store/apps/details?id=com.vetritnpsc.app">▶ Google Play-ல் பெறுக</a>
-    <a class="btn btn-telegram" href="https://t.me/VetriTNPSCApp" target="_blank">✈ Telegram Channel</a>
+  <!-- Top App Brand Pill with Logo -->
+  <div>
+    <div class="top-brand-pill">
+      <img src="icon-512.png" alt="Vetri TNPSC Logo" class="top-brand-logo">
+      <span class="top-brand-text">Vetri TNPSC (வெற்றி)</span>
+    </div>
   </div>
 
-  <div class="features">
-    <div class="feature-item">📚 6-12 சமச்சீர் பொதுத்தமிழ்</div>
-    <div class="feature-item">⚡ தினசரி நடப்பு நிகழ்வுகள்</div>
-    <div class="feature-item">⏱ 50 வினாக்கள் Mock Tests</div>
-    <div class="feature-item">🔄 தவறுகளை கற்கும் Revise</div>
+  <!-- 100% FREE pill -->
+  <div>
+    <div class="free-badge-pill">100% FREE • TNPSC 2026</div>
   </div>
 
-  <small><a href="privacy-policy.html">Privacy Policy</a> · Independent study platform for TNPSC preparation. Official exam info: <a href="https://www.tnpsc.gov.in" target="_blank">tnpsc.gov.in</a></small>
+  <!-- Hero Title -->
+  <h1 class="hero-title">Vetri TNPSC (வெற்றி)</h1>
+
+  <!-- Subtitle -->
+  <p class="hero-desc">
+    TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம், இலக்கியம், தினசரி நடப்பு நிகழ்வுகள் & மாதிரி தேர்வுகள்.
+  </p>
+
+  <!-- CTA Buttons -->
+  <div class="cta-group">
+    <!-- Google Play Button -->
+    <a href="https://play.google.com/store/apps/details?id=com.vetritnpsc.app" class="btn btn-googleplay">
+      <!-- Authentic Google Play Triangle SVG -->
+      <svg class="btn-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z" fill="#00E676"/>
+        <path d="M47 38.8C42.8 45.3 40.5 53.6 40.5 63v386c0 9.4 2.3 17.7 6.5 24.2l209.6-217.5L47 38.8z" fill="#00B0FF"/>
+        <path d="M325.3 277.7l60.1 60.1-280.8 161.2 220.7-221.3z" fill="#FF1744"/>
+        <path d="M459.7 238.1l-74.3-43.7-60.1 61.6 60.1 61.6 74.3-43.7c21.3-12.5 21.3-33.3 0-35.8z" fill="#FFD600"/>
+      </svg>
+      <span>Google Play-ல் பெறுக</span>
+    </a>
+
+    <!-- Telegram Channel Button -->
+    <a href="https://t.me/VetriTNPSCApp" target="_blank" class="btn btn-telegram">
+      <!-- Telegram Paper Plane SVG -->
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+      </svg>
+      <span>Telegram Channel</span>
+    </a>
+  </div>
+
+  <!-- 2x2 Feature Grid -->
+  <div class="feature-grid">
+
+    <!-- Card 1: 6-12 சமச்சீர் பொதுத்தமிழ் -->
+    <div class="feature-card">
+      <div class="card-icon-wrap">
+        <!-- 3D Book Icon -->
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="10" width="46" height="44" rx="8" fill="#10B981" />
+          <path d="M12 12C12 9.79086 13.7909 8 16 8H48C50.2091 8 52 9.79086 52 12V48C52 50.2091 50.2091 52 48 52H16C13.7909 52 12 50.2091 12 48V12Z" fill="url(#green-book-front)"/>
+          <rect x="18" y="16" width="28" height="18" rx="4" fill="#FACC15" />
+          <path d="M8 48C8 46 10 44 12 44H52V52C52 54 50 56 48 56H12C10 56 8 54 8 52V48Z" fill="#047857"/>
+          <path d="M26 44V56" stroke="#FDE047" stroke-width="4" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="green-book-front" x1="12" y1="8" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#34D399"/>
+              <stop offset="1" stop-color="#059669"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title-main">6-12 சமச்சீர்</span>
+        <span class="card-title-sub">பொதுத்தமிழ்</span>
+      </div>
+    </div>
+
+    <!-- Card 2: தினசரி நடப்பு நிகழ்வுகள் -->
+    <div class="feature-card">
+      <div class="card-icon-wrap">
+        <!-- 3D Calendar + Lightning Icon -->
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="14" width="48" height="42" rx="10" fill="#E2E8F0" />
+          <rect x="8" y="12" width="48" height="14" rx="6" fill="#EF4444" />
+          <rect x="18" y="6" width="6" height="12" rx="3" fill="#64748B" />
+          <rect x="40" y="6" width="6" height="12" rx="3" fill="#64748B" />
+          <!-- Golden Lightning Bolt -->
+          <path d="M36 22L20 38H32L28 54L46 36H32L36 22Z" fill="url(#gold-bolt)" filter="drop-shadow(0 4px 8px rgba(234, 179, 8, 0.45))"/>
+          <defs>
+            <linearGradient id="gold-bolt" x1="20" y1="22" x2="46" y2="54" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FDE047"/>
+              <stop offset="1" stop-color="#EAB308"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title-main">தினசரி நடப்பு</span>
+        <span class="card-title-sub">நிகழ்வுகள்</span>
+      </div>
+    </div>
+
+    <!-- Card 3: 50 வினாக்கள் Mock Tests -->
+    <div class="feature-card">
+      <div class="card-icon-wrap">
+        <!-- 3D Stopwatch / Timer Icon -->
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="36" r="22" fill="#3B82F6" />
+          <circle cx="32" cy="36" r="18" fill="url(#timer-dial)" />
+          <rect x="29" y="8" width="6" height="8" rx="2" fill="#F59E0B" />
+          <circle cx="32" cy="36" r="3.5" fill="#EF4444"/>
+          <!-- Stopwatch Hands -->
+          <line x1="32" y1="36" x2="32" y2="24" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+          <line x1="32" y1="36" x2="42" y2="36" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="48" cy="18" r="4" fill="#F59E0B"/>
+          <defs>
+            <linearGradient id="timer-dial" x1="14" y1="18" x2="50" y2="54" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FFFFFF"/>
+              <stop offset="1" stop-color="#E2E8F0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title-main">50 வினாக்கள்</span>
+        <span class="card-title-sub">Mock Tests</span>
+      </div>
+    </div>
+
+    <!-- Card 4: தவறுகளை கற்கும் Revise -->
+    <div class="feature-card">
+      <div class="card-icon-wrap">
+        <!-- 3D Brain + Circular Arrows Icon -->
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Circular Arrows -->
+          <circle cx="32" cy="32" r="23" stroke="#22C55E" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="24 10" />
+          <circle cx="32" cy="32" r="23" stroke="#06B6D4" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="24 10" stroke-dashoffset="18" />
+          <!-- Stylized Brain Center -->
+          <circle cx="28" cy="28" r="6" fill="#F472B6"/>
+          <circle cx="36" cy="28" r="6" fill="#FB7185"/>
+          <circle cx="26" cy="35" r="5" fill="#E879F9"/>
+          <circle cx="38" cy="35" r="5" fill="#F43F5E"/>
+          <circle cx="32" cy="36" r="7" fill="#F472B6" fill-opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title-main">தவறுகளை</span>
+        <span class="card-title-sub">கற்கும் Revise</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <span class="sep">•</span>
+    Independent study platform for TNPSC preparation.
+    <span class="sep">•</span>
+    Official exam info: <a href="https://www.tnpsc.gov.in" target="_blank" rel="noopener">tnpsc.gov.in</a>
+  </footer>
+
 </div>
+
 </body>
 </html>
