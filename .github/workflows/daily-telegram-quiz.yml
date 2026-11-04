@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Telegram Daily Quiz Script
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || '9156136105:AAHvk6-zMe7bxi8OhtS3Z_wFA31nPJBXs3E' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: '@VetriTNPSCApp'
         run: |
           python scripts/post_daily_quiz.py

@@ -19,7 +19,7 @@ This skill encapsulates the end-to-end autonomous distribution, content pipeline
 | **Content & Web Repo** | `c:\Moved_From_E\Projects\vetri-tnpsc-content` (`maniraja5599/vetri-tnpsc-content`) | Source of truth for `content.json`, `app-ads.txt`, and landing page assets. |
 | **Live Landing Page** | `https://vetri-tnpsc-content.vercel.app` | Vercel production hosting, Google Play redirect, Telegram CTA, rich OpenGraph cards. |
 | **Telegram Channel** | `https://t.me/VetriTNPSCApp` (`@VetriTNPSCApp`) | Primary community channel for daily polls, exam alerts, and student engagement. |
-| **Telegram Bot** | `@VetriTNPSCQuizBot` (`9156136105:AAHvk6-zMe7bxi8OhtS3Z_wFA31nPJBXs3E`) | Cloud bot with admin rights to post native Quiz Polls and promo announcements. |
+| **Telegram Bot** | `@VetriTNPSCQuizBot` (Managed via GitHub Secrets `TELEGRAM_BOT_TOKEN`) | Cloud bot with admin rights to post native Quiz Polls and promo announcements. |
 | **Global Directory** | TGStat (`https://tgstat.ru/en/channel/@VetriTNPSCApp`) | Search index and analytics engine for organic discoverability. |
 
 ---
@@ -57,7 +57,7 @@ python c:\Moved_From_E\Projects\vetri-tnpsc-content\scripts\post_daily_quiz.py
 ### Inspect Telegram Bot & Channel Connection
 ```python
 import urllib.request, json
-token = "9156136105:AAHvk6-zMe7bxi8OhtS3Z_wFA31nPJBXs3E"
+token = os.environ.get("TELEGRAM_BOT_TOKEN")
 url = f"https://api.telegram.org/bot{token}/getChat?chat_id=@VetriTNPSCApp"
 with urllib.request.urlopen(url) as r:
     print(json.loads(r.read().decode('utf-8')))

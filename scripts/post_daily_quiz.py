@@ -10,12 +10,21 @@ import urllib.request
 import urllib.parse
 from datetime import datetime
 
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "9156136105:AAHvk6-zMe7bxi8OhtS3Z_wFA31nPJBXs3E")
-TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "@VetriTNPSCApp")
-
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT_FILE = os.path.join(REPO_ROOT, "content.json")
 TRACKER_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posted_quiz_ids.json")
+
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "@VetriTNPSCApp")
+
+# Fallback: check local .env file (gitignored) if running locally
+if not TELEGRAM_BOT_TOKEN:
+    env_file = os.path.join(REPO_ROOT, ".env")
+    if os.path.exists(env_file):
+        with open(env_file, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.startswith("TELEGRAM_BOT_TOKEN="):
+                    TELEGRAM_BOT_TOKEN = line.strip().split("=", 1)[1].strip("\"'")
 
 
 def load_json(path, default):
