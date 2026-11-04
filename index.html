@@ -168,37 +168,45 @@
     margin: auto;
   }
 
-  /* Top App Branding Pill */
-  .top-brand-pill {
-    display: inline-flex;
+  /* Hero App Logo (Big & Prominent) */
+  .hero-logo-container {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding: 6px 16px 6px 8px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 999px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    margin-bottom: 22px;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    margin-bottom: 16px;
   }
-  .top-brand-pill:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.4);
+  .hero-logo-wrapper {
+    position: relative;
+    display: inline-block;
   }
-  .top-brand-logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  .hero-logo-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, rgba(99, 102, 241, 0.3) 50%, transparent 75%);
+    border-radius: 36px;
+    z-index: -1;
+    filter: blur(14px);
+    animation: pulseLogoGlow 3.5s ease-in-out infinite alternate;
+  }
+  @keyframes pulseLogoGlow {
+    0% { transform: scale(0.92); opacity: 0.6; }
+    100% { transform: scale(1.08); opacity: 0.95; }
+  }
+  .hero-app-logo {
+    width: 114px;
+    height: 114px;
+    border-radius: 28px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.45);
+    border: 3px solid rgba(255, 255, 255, 0.35);
     object-fit: cover;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   }
-  .top-brand-text {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.01em;
+  .hero-app-logo:hover {
+    transform: translateY(-5px) scale(1.06);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 45px rgba(168, 85, 247, 0.65);
+    border-color: rgba(255, 255, 255, 0.6);
   }
 
   /* 100% FREE pill */
@@ -389,6 +397,12 @@
       padding: 30px 14px 24px;
     }
 
+    .hero-app-logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+    }
+
     h1.hero-title {
       font-size: 2.3rem;
       margin-bottom: 12px;
@@ -512,11 +526,10 @@
 
 <div class="container">
   
-  <!-- Top App Brand Pill with Logo -->
-  <div>
-    <div class="top-brand-pill">
-      <img src="icon-512.png" alt="Vetri TNPSC Logo" class="top-brand-logo">
-      <span class="top-brand-text">Vetri TNPSC (வெற்றி)</span>
+  <!-- Hero App Logo (Big & Beautiful) -->
+  <div class="hero-logo-container">
+    <div class="hero-logo-wrapper">
+      <img src="icon-512.png" alt="Vetri TNPSC Official App Logo" class="hero-app-logo">
     </div>
   </div>
 
