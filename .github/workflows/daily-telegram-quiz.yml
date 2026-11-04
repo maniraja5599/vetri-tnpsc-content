@@ -1,0 +1,41 @@
+name: Daily Telegram Quiz Automation
+
+on:
+  schedule:
+    # 02:30 UTC = 08:00 AM IST (Indian Standard Time) every morning
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  post-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Telegram Daily Quiz Script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || '9156136105:AAHvk6-zMe7bxi8OhtS3Z_wFA31nPJBXs3E' }}
+          TELEGRAM_CHAT_ID: '@VetriTNPSCApp'
+        run: |
+          python scripts/post_daily_quiz.py
+
+      - name: Commit updated tracker if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -f scripts/posted_quiz_ids.json ]; then
+            git add scripts/posted_quiz_ids.json
+            git diff --staged --quiet || git commit -m "chore: update posted Telegram quiz IDs [skip ci]"
+            git push origin main || echo "No changes to push"
+          fi
