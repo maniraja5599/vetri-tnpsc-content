@@ -4,9 +4,14 @@ const path = require('path');
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHANNEL_ID = '@VetriTNPSCApp';
 const APP_URL = 'https://vetri-tnpsc-content.vercel.app';
+const PDF_URL = `${APP_URL}/materials/vetri_tnpsc_group4_tamil_golden_revision.pdf`;
 
 // Helper to call Telegram API
 async function tg(method, body) {
+  if (!BOT_TOKEN) {
+    console.error('TELEGRAM_BOT_TOKEN is not configured');
+    return { ok: false };
+  }
   const url = `https://api.telegram.org/bot${BOT_TOKEN}/${method}`;
   const res = await fetch(url, {
     method: 'POST',
@@ -74,22 +79,27 @@ async function sendQuizPoll(chatId, filterSubject = null) {
 }
 
 // Send Force-Join / PDF Material response
-async function handleMaterialRequest(chatId, userId, messageId = null) {
+async function handleMaterialRequest(chatId, userId) {
   const isMember = await isChannelMember(userId);
 
   if (isMember) {
     const text = 
       `🎉 *வாழ்த்துகள்! நீங்கள் நமது அதிகாரப்பூர்வ சேனலில் இணைந்துள்ளதை உறுதி செய்தோம்!* 📚✨\n\n` +
-      `இதோ உங்கள் TNPSC Group 4 & 2 தயாரிப்பிற்கான பிரத்யேக இலவச பாடக்குறிப்புகள் மற்றும் சமச்சீர் வினா வங்கி:\n\n` +
-      `📖 *1. 6 முதல் 12-ஆம் வகுப்பு சமச்சீர் பாடப்புத்தகங்கள் (அதிகாரப்பூர்வ PDF):*\n` +
+      `இதோ உங்கள் TNPSC Group 4 & 2 தயாரிப்பிற்கான பிரத்யேக இலவச பாடக்குறிப்புகள்:\n\n` +
+      `📕 *1. பொதுத்தமிழ் கோல்டன் ரிவிஷன் கையேடு (Direct PDF):*\n` +
+      `சான்றோர்கள், அடைமொழிகள், 18 கீழ்க்கணக்கு நூல்கள், சொல்லும் பொருளும் & மாதிரி வினாக்கள் அடங்கியது.\n` +
+      `👉 [இங்கே கிளிக் செய்து PDF தரவிறக்குங்கள்](${PDF_URL})\n\n` +
+      `📖 *2. 6 முதல் 12-ஆம் வகுப்பு சமச்சீர் பாடப்புத்தகங்கள் (அதிகாரப்பூர்வ PDF):*\n` +
       `👉 https://tnschools.gov.in/textbooks\n\n` +
-      `📱 *2. 50 வினாக்கள் OMR மாதிரி தேர்வுகள் (Mock Tests):*\n` +
+      `📱 *3. 50 வினாக்கள் OMR மாதிரி தேர்வுகள் (Mock Tests):*\n` +
       `👉 ${APP_URL}\n\n` +
-      `💡 மேலும் புதிய நடப்பு நிகழ்வுகள் வினாக்களை தினமும் எழுத @VetriTNPSCApp சேனலில் இணைந்திருங்கள்!`;
+      `💡 மேலும் புதிய வினாக்களை தினமும் எழுத @VetriTNPSCApp சேனலில் இணைந்திருங்கள்!`;
 
     const markup = {
       inline_keyboard: [
-        [{ text: '🎯 அடுத்த வினாடி வினா எழுது (/quiz)', callback_data: 'run_quiz' }],
+        [{ text: '📥 Golden Revision PDF தரவிறக்கம் செய்', url: PDF_URL }],
+        [{ text: '🎯 வினாடி வினா எழுது (/quiz)', callback_data: 'run_quiz' }],
+        [{ text: '🎁 நண்பர்களை அழைக்க & VIP வினாக்கள் பெற (/invite)', callback_data: 'run_invite' }],
         [{ text: '📱 Vetri TNPSC App-ல் பயிற்சி செய்', url: APP_URL }],
       ],
     };
@@ -98,6 +108,7 @@ async function handleMaterialRequest(chatId, userId, messageId = null) {
       chat_id: chatId,
       text: text,
       parse_mode: 'Markdown',
+      disable_web_page_preview: false,
       reply_markup: markup,
     });
   } else {
@@ -123,6 +134,43 @@ async function handleMaterialRequest(chatId, userId, messageId = null) {
   }
 }
 
+// Handle Referral / Invite
+async function handleInviteRequest(chatId, userId) {
+  const inviteLink = `https://t.me/VetriTNPSCQuizBot?start=ref_${userId}`;
+  const shareText = 
+    `🎯 TNPSC Group 4 & 2 தேர்வுக்கு தயாராகிறீர்களா? 📚✨\n` +
+    `தினசரி இலவச வினாடி வினா, சமச்சீர் தமிழ் குறிப்புகள் & Golden Revision PDF பெற வெற்றி TNPSC Bot-ல் இணையுங்கள்! 👇\n` +
+    inviteLink;
+  const tgShareUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent('🎯 TNPSC Group 4 & 2 இலவச வினாடி வினா & Golden Revision PDF பெற வெற்றி TNPSC Bot-ல் இணையுங்கள்! 📚✨')}`;
+  const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+
+  const text = 
+    `🎁 *வெற்றி TNPSC நண்பர்கள் அழைப்பு திட்டம் (Invite & Earn VIP Rewards)!* 🌟\n\n` +
+    `உங்கள் தனிப்பட்ட Referral Link:\n` +
+    `👉 \`${inviteLink}\`\n\n` +
+    `💡 *எப்படி செயல்படுகிறது?*\n` +
+    `1. கீழே உள்ள *'Telegram-ல் பகிருங்கள்'* அல்லது *'WhatsApp-ல் பகிருங்கள்'* பட்டனைத் தட்டி உங்கள் TNPSC நண்பர்கள் மற்றும் ஸ்டடி குரூப்களுக்கு பகிருங்கள்.\n` +
+    `2. உங்கள் நண்பர்கள் இந்த லிங்கை கிளிக் செய்து இணையும்போது, நீங்கள் புதிய பிரத்யேக Mock Tests மற்றும் VIP Study Materials இலவசமாக பெறலாம்!\n\n` +
+    `இப்போதே ஒரு நண்பருக்கு பகிர்ந்து உதவுங்கள்! 👇`;
+
+  const markup = {
+    inline_keyboard: [
+      [{ text: '✈️ Telegram-ல் பகிருங்கள் (1-Tap Share)', url: tgShareUrl }],
+      [{ text: '💬 WhatsApp-ல் பகிருங்கள்', url: waShareUrl }],
+      [{ text: '🎯 வினாடி வினா எழுது (/quiz)', callback_data: 'run_quiz' }],
+      [{ text: '📥 இலவச Study Material PDF (/pdf)', callback_data: 'get_pdf' }],
+    ],
+  };
+
+  return tg('sendMessage', {
+    chat_id: chatId,
+    text: text,
+    parse_mode: 'Markdown',
+    reply_markup: markup,
+  });
+}
+
+// Main serverless handler
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(200).send('Vetri TNPSC Telegram Webhook Serverless Function is active 🚀');
@@ -160,6 +208,12 @@ module.exports = async (req, res) => {
       } else if (data === 'run_quiz') {
         await tg('answerCallbackQuery', { callback_query_id: cb.id });
         await sendQuizPoll(chatId);
+      } else if (data === 'run_invite') {
+        await tg('answerCallbackQuery', { callback_query_id: cb.id });
+        await handleInviteRequest(chatId, userId);
+      } else if (data === 'get_pdf') {
+        await tg('answerCallbackQuery', { callback_query_id: cb.id });
+        await handleMaterialRequest(chatId, userId);
       }
       return res.status(200).json({ ok: true });
     }
@@ -175,10 +229,29 @@ module.exports = async (req, res) => {
     const text = message.text.trim();
     const firstName = message.from.first_name || 'தோழரே';
 
+    // Handle /start (with possible referral parameter: /start ref_12345)
     if (text.startsWith('/start')) {
-      if (text.includes('pdf') || text.includes('material')) {
-        await handleMaterialRequest(chatId, userId);
-        return res.status(200).json({ ok: true });
+      const parts = text.split(' ');
+      if (parts.length > 1) {
+        const param = parts[1];
+        if (param.startsWith('ref_')) {
+          const inviterId = param.replace('ref_', '');
+          if (inviterId && inviterId !== String(userId)) {
+            // Notify inviter
+            try {
+              await tg('sendMessage', {
+                chat_id: inviterId,
+                text: `🎉 *சூப்பர் செய்தி!* உங்கள் நண்பர் *${firstName}* உங்கள் அழைப்பின் மூலம் வெற்றி TNPSC Bot-ல் இணைந்துள்ளார்! 🚀✨\n\nதொடர்ந்து நண்பர்களை அழைத்து VIP மெட்டீரியல்களை அன்லாக் செய்யுங்கள்! (/invite)`,
+                parse_mode: 'Markdown',
+              });
+            } catch (err) {
+              console.error('Failed to notify inviter:', err);
+            }
+          }
+        } else if (param.includes('pdf') || param.includes('material')) {
+          await handleMaterialRequest(chatId, userId);
+          return res.status(200).json({ ok: true });
+        }
       }
 
       const welcomeText = 
@@ -187,14 +260,15 @@ module.exports = async (req, res) => {
         `🔹 */quiz* — உடனடி நேரடி வினாடி வினா\n` +
         `🔹 */tamil* — 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம் & இலக்கியம்\n` +
         `🔹 */ca* — இன்றைய புதிய நடப்பு நிகழ்வுகள்\n` +
-        `🔹 */pdf* — இலவச சமச்சீர் பாடப்புத்தகங்கள் & குறிப்புகள்\n\n` +
+        `🔹 */invite* — நண்பர்களை அழைத்து VIP தேர்வுகள் பெற\n` +
+        `🔹 */pdf* — பொதுத்தமிழ் Golden Revision PDF & குறிப்புகள்\n\n` +
         `கீழே உள்ள பட்டன்களைப் பயன்படுத்தி உடனே தொடங்கலாம்! 👇`;
 
       const markup = {
         keyboard: [
-          [{ text: '🎯 ஒரு வினாடி வினா எழுது (/quiz)' }],
+          [{ text: '🎯 ஒரு வினாடி வினா எழுது (/quiz)' }, { text: '🎁 நண்பர்களை அழைக்க (/invite)' }],
           [{ text: '📚 சமச்சீர் தமிழ் (/tamil)' }, { text: '⚡ நடப்பு நிகழ்வுகள் (/ca)' }],
-          [{ text: '📥 இலவச Study Material PDF (/pdf)' }],
+          [{ text: '📥 இலவச Golden Revision PDF (/pdf)' }],
         ],
         resize_keyboard: true,
         one_time_keyboard: false,
@@ -224,7 +298,12 @@ module.exports = async (req, res) => {
       return res.status(200).json({ ok: true });
     }
 
-    if (text === '/pdf' || text.includes('/pdf') || text.includes('Study Material')) {
+    if (text === '/invite' || text.includes('/invite') || text.includes('நண்பர்களை அழைக்க')) {
+      await handleInviteRequest(chatId, userId);
+      return res.status(200).json({ ok: true });
+    }
+
+    if (text === '/pdf' || text.includes('/pdf') || text.includes('Study Material') || text.includes('Golden Revision')) {
       await handleMaterialRequest(chatId, userId);
       return res.status(200).json({ ok: true });
     }
@@ -232,7 +311,7 @@ module.exports = async (req, res) => {
     // Default reply
     await tg('sendMessage', {
       chat_id: chatId,
-      text: `வணக்கம் ${firstName}! வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
+      text: `வணக்கம் ${firstName}! வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
     });
 
   } catch (err) {
