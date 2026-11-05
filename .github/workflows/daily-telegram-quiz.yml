@@ -4,6 +4,11 @@ on:
   schedule:
     # 02:30 UTC = 08:00 AM IST (Indian Standard Time) every morning
     - cron: '30 2 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'content.json'
   workflow_dispatch:
 
 permissions:

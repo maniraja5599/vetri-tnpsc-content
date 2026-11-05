@@ -78,7 +78,7 @@ def main():
 
     posted = set(load_json(TRACKER_FILE, []))
 
-    # Pick up to 2 unposted questions
+    # Pick unposted questions
     unposted = [q for q in questions if q.get("id") not in posted]
 
     # If all have been posted, reset tracker to cycle through
@@ -87,8 +87,13 @@ def main():
         posted.clear()
         unposted = questions
 
-    # Pick 2 questions
-    selected = unposted[:2]
+    # Smart Selection: Prioritize today's freshest current affairs, then newest unposted
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    today_unposted = [q for q in unposted if q.get("d") == today_str]
+    other_unposted = [q for q in unposted if q.get("d") != today_str]
+    other_unposted.reverse()  # Newest questions first
+
+    selected = (today_unposted + other_unposted)[:2]
 
     newly_posted = []
     for q in selected:
