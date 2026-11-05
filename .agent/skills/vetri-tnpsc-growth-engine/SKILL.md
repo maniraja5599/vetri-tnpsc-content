@@ -83,6 +83,7 @@ curl -I https://vetri-tnpsc-content.vercel.app/content.json
    ```
 
 ### 2. High-Intent Organic Channels
+* **Daily YouTube Comment Engine**: Run `python scripts/youtube_growth_engine.py` to generate 3 daily, unique, spam-safe Tamil comment variations and target URLs for fresh morning TNPSC current affairs and Tamil classes.
 * **Quora Strategy**: Answer high-traffic queries like *"How do I prepare for TNPSC Group 4?"* linking to the study method and app (`quora.com/How-do-I-prepare-for-tnpsc-group-4/answer/Mani-Raja-33`).
 * **Facebook Groups**: Share tricky Samacheer grammar questions in groups with 100K+ members prompting users to comment their answer, with the app link in footer.
 * **In-App Share Cards**: Encourage users to share their 10/10 quiz score cards to WhatsApp Status.
