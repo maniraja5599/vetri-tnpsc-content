@@ -56,13 +56,15 @@ def send_poll(question_text, options, correct_index, explanation):
         return json.loads(resp.read().decode("utf-8"))
 
 
-def send_message(text):
+def send_message(text, reply_markup=None):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": TELEGRAM_CHAT_ID,
         "text": text,
         "disable_web_page_preview": False,
     }
+    if reply_markup:
+        payload["reply_markup"] = json.dumps(reply_markup)
     data = urllib.parse.urlencode(payload).encode("utf-8")
     req = urllib.request.Request(url, data=data)
     with urllib.request.urlopen(req) as resp:
@@ -115,17 +117,32 @@ def main():
             print(f"Error posting poll: {err}")
 
     if newly_posted:
-        # Send promo message below the daily quizzes
+        # Build viral 1-tap share link & buttons
+        share_url = "https://t.me/share/url?" + urllib.parse.urlencode({
+            "url": "https://t.me/VetriTNPSCApp",
+            "text": "🎯 TNPSC Group 4 & 2 பொதுத்தமிழ் மற்றும் தினசரி நடப்பு நிகழ்வுகள் வினாடி வினா! தினமும் இலவசமாகப் பயிற்சி செய்ய இணையுங்கள்: "
+        })
+
+        reply_markup = {
+            "inline_keyboard": [
+                [
+                    {"text": "🚀 நண்பர்களுக்குப் பகிருங்கள் (1-Tap Share)", "url": share_url}
+                ],
+                [
+                    {"text": "📱 Vetri TNPSC App-ல் பயிற்சி செய்ய", "url": "https://vetri-tnpsc-content.vercel.app"}
+                ]
+            ]
+        }
+
         promo_text = (
             "🎯 TNPSC Group 4 & 2 பொதுத்தமிழ் மற்றும் தினசரி நடப்பு நிகழ்வுகள்!\n\n"
             "⏱️ 50 வினாக்கள் கொண்ட Mock Tests மற்றும் பிழை திருத்தம் (Revise) செய்ய:\n"
-            "📲 Vetri TNPSC App-ஐ இலவசமாகப் பதிவிறக்குங்கள்:\n"
-            "👉 https://vetri-tnpsc-content.vercel.app\n\n"
-            "உங்கள் நண்பர்களுக்கும் இந்த வினாடி வினாவை பகிருங்கள்! 🔥"
+            "📲 Vetri TNPSC App: https://vetri-tnpsc-content.vercel.app\n\n"
+            "💡 இந்த வினாடி வினா உங்கள் நண்பர்களுக்கும் உதவ, கீழே உள்ள பட்டனைத் தட்டி பகிருங்கள்! 👇"
         )
         try:
-            send_message(promo_text)
-            print("Promo message sent successfully.")
+            send_message(promo_text, reply_markup=reply_markup)
+            print("Promo message with viral share button sent successfully.")
         except Exception as err:
             print(f"Error sending promo message: {err}")
 

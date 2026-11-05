@@ -2,8 +2,10 @@ name: Daily Telegram Quiz Automation
 
 on:
   schedule:
-    # 02:30 UTC = 08:00 AM IST (Indian Standard Time) every morning
+    # Morning 08:00 AM IST (02:30 UTC) - Daily Current Affairs
     - cron: '30 2 * * *'
+    # Evening 08:30 PM IST (15:00 UTC) - Prime Study Revision Quiz
+    - cron: '0 15 * * *'
   push:
     branches:
       - main
