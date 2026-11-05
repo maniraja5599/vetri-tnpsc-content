@@ -311,4 +311,15 @@ def generate_short_video(question_idx=0, output_name='tnpsc_quiz_short_01.mp4'):
         return None
 
 if __name__ == '__main__':
-    generate_short_video(0, 'tnpsc_group4_daily_short_01.mp4')
+    import argparse
+    parser = argparse.ArgumentParser(description="Generate 1080x1920 YouTube Shorts / Reels vertical quiz videos")
+    parser.add_argument('--count', type=int, default=1, help="Number of short videos to generate")
+    parser.add_argument('--start', type=int, default=0, help="Starting question index from content.json")
+    args = parser.parse_args()
+
+    for i in range(args.count):
+        q_idx = args.start + i
+        filename = f"tnpsc_quiz_short_{q_idx+1:02d}.mp4"
+        print(f"\n--- Generating Short Video {i+1}/{args.count} for Question {q_idx+1} ---")
+        generate_short_video(q_idx, filename)
+
