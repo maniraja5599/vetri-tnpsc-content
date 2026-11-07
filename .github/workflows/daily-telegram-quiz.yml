@@ -43,6 +43,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if [ -f scripts/posted_quiz_ids.json ]; then
             git add scripts/posted_quiz_ids.json
-            git diff --staged --quiet || git commit -m "chore: update posted Telegram quiz IDs [skip ci]"
-            git push origin main || echo "No changes to push"
+            if ! git diff --staged --quiet; then
+              git commit -m "chore: update posted Telegram quiz IDs [skip ci]"
+              git pull --rebase origin main || echo "Rebase skipped"
+              git push origin main || echo "No changes to push"
+            fi
           fi

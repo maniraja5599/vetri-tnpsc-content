@@ -6,6 +6,7 @@ Posts fresh questions from content.json to https://t.me/VetriTNPSCApp as interac
 
 import os
 import json
+import time
 import urllib.request
 import urllib.parse
 from datetime import datetime
@@ -41,10 +42,11 @@ def save_json(path, data):
 
 def send_poll(question_text, options, correct_index, explanation):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPoll"
+    clean_options = [str(opt)[:100] for opt in options[:10]]
     payload = {
         "chat_id": TELEGRAM_CHAT_ID,
         "question": question_text[:300],
-        "options": json.dumps(options[:10]),
+        "options": json.dumps(clean_options),
         "type": "quiz",
         "correct_option_id": correct_index,
         "explanation": (explanation or "")[:200],
@@ -113,6 +115,7 @@ def main():
             if res.get("ok"):
                 newly_posted.append(q.get("id"))
                 print(f"Success! Poll message ID: {res['result']['message_id']}")
+                time.sleep(2)
         except Exception as err:
             print(f"Error posting poll: {err}")
 

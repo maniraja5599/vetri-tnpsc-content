@@ -1,5 +1,5 @@
-# Merges the daily current-affairs PR at 12:00 PM IST unless you close it
-# or add the "hold" label before then. Merges only if:
+# Merges daily current-affairs PRs automatically when verified.
+# Merges only if:
 #   - the reviewer routine (or the owner) commented "VERIFIED <latest commit sha>",
 #     or the owner added the "verified" label, and
 #   - .github/check.js passes.
@@ -7,7 +7,16 @@ name: Auto-merge daily current affairs
 
 on:
   schedule:
-    - cron: '30 6 * * *' # 06:30 UTC = 12:00 PM IST
+    # 02:00 UTC = 07:30 AM IST (Auto-merge before morning 8:00 AM quiz)
+    - cron: '0 2 * * *'
+    # 06:30 UTC = 12:00 PM IST (Midday catch-up)
+    - cron: '30 6 * * *'
+    # 14:30 UTC = 08:00 PM IST (Auto-merge before evening 8:30 PM quiz)
+    - cron: '30 14 * * *'
+  pull_request:
+    types: [opened, synchronize, labeled]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
 
 permissions:
