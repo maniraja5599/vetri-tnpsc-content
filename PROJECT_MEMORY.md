@@ -1,12 +1,12 @@
 # Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
-**Last Updated:** November 7, 2026 (09:50 AM IST) · **Testing Status:** Day 6 of 14
+**Last Updated:** November 7, 2026 (11:15 AM IST) · **Testing Status:** Day 6 of 14
 
 ---
 
 ## 🚀 Quick Executive Status
 * **Ecosystem:** Vetri TNPSC: Tamil Quiz & VAO (`com.vetritnpsc.app`)
 * **Google Play Closed Testing:** **Day 6 of 14** (15 active human testers, metadata fully approved).
-* **Master Question Bank:** **56 Total Questions** (18 posted, 38 unposted, including fresh Nov 7 Sports Current Affairs & Samacheer Kalvi Tamil).
+* **Master Question Bank:** **56 Total Questions** (18 posted, 38 unposted, across Samacheer Kalvi Tamil and Current Affairs).
 * **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share).
 * **Telegram Channel:** [@VetriTNPSCApp](https://t.me/VetriTNPSCApp) (86+ subscribers, automated morning 8 AM & evening 8:30 PM polls).
 * **Telegram Bot:** `@VetriTNPSCQuizBot` (Vercel serverless webhook, Force-Join PDF Funnel, `/invite` Referral Engine, `/tamil` and `/ca` question filters).
@@ -31,7 +31,7 @@
 | `api/telegram.js` | 24/7 serverless webhook for `@VetriTNPSCQuizBot` on Vercel. |
 | `materials/vetri_tnpsc_group4_tamil_golden_revision.pdf` | High-value 589 KB Tamil revision lead magnet. |
 | `scripts/generate_quiz_short.py` | Batch generator for 1080x1920 (9:16) YouTube Shorts & Instagram Reels. |
-| `scripts/post_daily_quiz.py` | Automated Telegram quiz poll dispatcher. |
+| `scripts/post_daily_quiz.py` | Automated Telegram quiz poll dispatcher (with option safety & sleep throttling). |
 | `scripts/posted_quiz_ids.json` | Live tracker of published question IDs. |
 | `scripts/youtube_growth_engine.py` | Daily YouTube comment seeding automation. |
 | `google_play_production_application_guide.md` | Full 20-question production access dossier for Day 14. |
@@ -39,11 +39,17 @@
 
 ---
 
-## ⏰ Active Schedules & Automations
-1. **Morning Telegram Quiz (Day 6, Nov 7):** GitHub Actions completed at 08:00 AM IST (`ca202611071`, `ca202611072`, `ta0005`, `ta0006`).
-2. **Evening Telegram Quiz (Day 6, Nov 7):** Scheduled for 08:30 PM IST (`0 15 * * *`).
-3. **Daily Content Pull & Auto-merge:** PR #10 auto-merged today's breaking news.
-4. **Morning YouTube Seeding Window (09:30 AM–10:00 AM IST):** Active now.
+## ⚡ Automated CI/CD & Auto-Merge + Telegram Dispatch Flow
+1. **Pull Request Trigger & Auto-Merge (`.github/workflows/auto-merge.yml`):**
+   * Daily CA branch `ca-YYYY-MM-DD` is created.
+   * Auto-merge triggers on: PR open/label/sync, comment `VERIFIED`, and cron (07:30 AM, 12:00 PM, 08:00 PM IST).
+   * Validates via `.github/check.js` (valid JSON, increased version, non-empty fields, exactly 4 unique options, 0-3 answer index) and `.github/approved.js`.
+   * Merges automatically via squash and deletes the branch.
+2. **Instant Push-to-Telegram Dispatch (`.github/workflows/daily-telegram-quiz.yml`):**
+   * Triggered automatically on every push/merge to `main` modifying `content.json`.
+   * Also triggered on schedule: Morning 08:00 AM IST & Evening 08:30 PM IST.
+   * Selects newly merged unposted questions, sends native quiz polls to `@VetriTNPSCApp` with 1-Tap Viral Share buttons.
+   * Commits `scripts/posted_quiz_ids.json` with `[skip ci]` and rebase concurrency safety.
 
 ---
 
