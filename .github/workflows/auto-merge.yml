@@ -7,12 +7,12 @@ name: Auto-merge daily current affairs
 
 on:
   schedule:
-    # 02:00 UTC = 07:30 AM IST (Auto-merge before morning 8:00 AM quiz)
-    - cron: '0 2 * * *'
-    # 06:30 UTC = 12:00 PM IST (Midday catch-up)
-    - cron: '30 6 * * *'
-    # 14:30 UTC = 08:00 PM IST (Auto-merge before evening 8:30 PM quiz)
-    - cron: '30 14 * * *'
+    # 02:15 UTC = 07:45 AM IST (Off-peak auto-merge before morning quiz)
+    - cron: '15 2 * * *'
+    # 06:25 UTC = 11:55 AM IST (Midday catch-up)
+    - cron: '25 6 * * *'
+    # 14:20 UTC = 07:50 PM IST (Off-peak auto-merge before evening quiz)
+    - cron: '20 14 * * *'
   pull_request:
     types: [opened, synchronize, labeled]
   issue_comment:
