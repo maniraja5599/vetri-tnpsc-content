@@ -6,7 +6,7 @@
 ## 🚀 Quick Executive Status
 * **Ecosystem:** Vetri TNPSC: Tamil Quiz & VAO (`com.vetritnpsc.app`)
 * **Google Play Closed Testing:** **Day 8 of 14 (6 days until Production Application)** (15 active human testers, metadata fully approved).
-* **Master Question Bank:** **59 Total Questions** (28 posted, 31 unposted in reserve: 3 Tamil + 28 CA).
+* **Master Question Bank:** **59 Total Questions** (30 posted, 29 unposted in reserve: 1 Tamil + 28 CA).
 * **Generated Video Shorts (1080x1920 9:16):** **8 Video Shorts ready** in `shorts/`.
 * **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share).
 * **Telegram Channel:** [@VetriTNPSCApp](https://t.me/VetriTNPSCApp) (86+ subscribers, automated morning 07:55 AM & evening 08:25 PM polls).
