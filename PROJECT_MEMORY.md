@@ -1,12 +1,12 @@
 # Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
-**Last Self-Updated:** November 13, 2026 (05:20 PM IST) · **Testing Status:** Day 12 of 14 (2 days until Production Application)
+**Last Self-Updated:** November 13, 2026 (08:28 PM IST) · **Testing Status:** Day 12 of 14 (2 days until Production Application)
 
 ---
 
 ## 🚀 Quick Executive Status
 * **Ecosystem:** Vetri TNPSC: Tamil Quiz & VAO (`com.vetritnpsc.app`)
 * **Google Play Closed Testing:** **Day 12 of 14 (2 days until Production Application)** (15 active human testers, metadata fully approved).
-* **Master Question Bank:** **78 Total Questions** (54 posted, 24 unposted in reserve: 10 Tamil + 14 CA).
+* **Master Question Bank:** **78 Total Questions** (58 posted, 20 unposted in reserve: 9 Tamil + 11 CA).
 * **Generated Video Shorts (1080x1920 9:16):** **10 Video Shorts ready** in `shorts/`.
 * **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share).
 * **Telegram Channel:** [@VetriTNPSCApp](https://t.me/VetriTNPSCApp) (86+ subscribers, automated morning 07:55 AM & evening 08:25 PM polls).
