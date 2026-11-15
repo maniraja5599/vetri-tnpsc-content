@@ -67,11 +67,7 @@ def get_shorts_count():
 
 def update_project_memory(day, remaining, stats, shorts_count):
     now_str = datetime.now().strftime("%B %d, %Y (%I:%M %p IST)")
-    status_headline = f"Day {day} of {TESTING_TOTAL_DAYS}"
-    if remaining == 0:
-        status_headline = "Day 14 Completed — 🚀 Production Application Under Review (Applied Nov 15, 06:20 AM)"
-    else:
-        status_headline += f" ({remaining} days until Production Application)"
+    status_headline = "🎉 PRODUCTION ACCESS APPROVED & RELEASE SUBMITTED FOR FULL ROLLOUT (178 Countries)"
 
     content = f"""# Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
 **Last Self-Updated:** {now_str} · **Testing Status:** {status_headline}
