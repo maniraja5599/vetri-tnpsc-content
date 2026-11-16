@@ -4,6 +4,7 @@ const path = require('path');
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHANNEL_ID = '@VetriTNPSCApp';
 const APP_URL = 'https://vetri-tnpsc-content.vercel.app';
+const PLAYSTORE_URL = 'https://play.google.com/store/apps/details?id=com.vetritnpsc.app';
 const PDF_URL = `${APP_URL}/materials/vetri_tnpsc_group4_tamil_golden_revision.pdf`;
 
 // Helper to call Telegram API
@@ -97,10 +98,11 @@ async function handleMaterialRequest(chatId, userId) {
 
     const markup = {
       inline_keyboard: [
+        [{ text: '📲 Google Play Store-ல் Install செய் (New!)', url: PLAYSTORE_URL }],
         [{ text: '📥 Golden Revision PDF தரவிறக்கம் செய்', url: PDF_URL }],
         [{ text: '🎯 வினாடி வினா எழுது (/quiz)', callback_data: 'run_quiz' }],
         [{ text: '🎁 நண்பர்களை அழைக்க & VIP வினாக்கள் பெற (/invite)', callback_data: 'run_invite' }],
-        [{ text: '📱 Vetri TNPSC App-ல் பயிற்சி செய்', url: APP_URL }],
+        [{ text: '🌐 Browser-ல் Mock Test பயிற்சி செய்', url: APP_URL }],
       ],
     };
 
@@ -295,6 +297,24 @@ module.exports = async (req, res) => {
 
     if (text === '/ca' || text.includes('/ca') || text.includes('நடப்பு நிகழ்வுகள்')) {
       await sendQuizPoll(chatId, 'ca');
+      return res.status(200).json({ ok: true });
+    }
+
+    if (text === '/app' || text.includes('/app') || text.includes('Play Store') || text.includes('ஆப்')) {
+      await tg('sendMessage', {
+        chat_id: chatId,
+        text: `📲 *Vetri TNPSC: Tamil Quiz & VAO* ஆப் இப்போது Google Play Store-ல் அதிகாரப்பூர்வமாக Live!\n\n` +
+          `6-12 சமச்சீர் பொதுத்தமிழ் மற்றும் தினசரி நடப்பு நிகழ்வுகள் வினாடி வினா பயிற்சி செய்ய உடனே பதிவிறக்குங்கள்:\n` +
+          `👉 [Play Store-ல் Install செய்ய இங்கே கிளிக் செய்யவும்](${PLAYSTORE_URL})\n\n` +
+          `🌐 [Browser-ல் நேரடியாக Mock Test எழுத](${APP_URL})`,
+        parse_mode: 'Markdown',
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: '📲 Google Play Store-ல் Install செய்', url: PLAYSTORE_URL }],
+            [{ text: '🌐 Browser-ல் Online Mock Test எழுது', url: APP_URL }],
+          ],
+        },
+      });
       return res.status(200).json({ ok: true });
     }
 
