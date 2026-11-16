@@ -42,11 +42,11 @@ BODIES = [
 ]
 
 CALL_TO_ACTIONS = [
-    "👉 விருப்பமுள்ளவர்கள் இலவசமாக இணைந்து பயன்பெறலாம்: t.me/VetriTNPSCApp",
-    "📲 தினசரி பயிற்சிக்கு இணையுங்கள்: t.me/VetriTNPSCApp",
-    "📚 நேரடி வினாடி வினாவில் பங்கேற்க: t.me/VetriTNPSCApp",
-    "🎯 இலவச மாதிரி வினாடி வினாவிற்கு: t.me/VetriTNPSCApp",
-    "💡 உங்கள் நண்பர்களுக்கும் பகிருங்கள்: t.me/VetriTNPSCApp"
+    "📲 Play Store-ல் இலவசமாகப் பதிவிறக்க: play.google.com/store/apps/details?id=com.vetritnpsc.app",
+    "🌐 ஆன்லைனில் இலவச தேர்வு எழுத: vetri-tnpsc-content.vercel.app",
+    "📲 நேரடி Mock Test பயிற்சிக்கு Play Store App: play.google.com/store/apps/details?id=com.vetritnpsc.app",
+    "🎯 Play Store-ல் 'Vetri TNPSC' பதிவிறக்கம் செய்யுங்கள்: play.google.com/store/apps/details?id=com.vetritnpsc.app",
+    "📚 Telegram மற்றும் Play Store-ல் இலவச பயிற்சிக்கு: t.me/VetriTNPSCApp"
 ]
 
 
