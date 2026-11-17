@@ -98,6 +98,7 @@ async function handleMaterialRequest(chatId, userId) {
 
     const markup = {
       inline_keyboard: [
+        [{ text: '👑 VIP Mega Pass அன்லாக் செய் (₹29)', callback_data: 'get_vip' }],
         [{ text: '📲 Google Play Store-ல் Install செய் (New!)', url: PLAYSTORE_URL }],
         [{ text: '📥 Golden Revision PDF தரவிறக்கம் செய்', url: PDF_URL }],
         [{ text: '🎯 வினாடி வினா எழுது (/quiz)', callback_data: 'run_quiz' }],
@@ -159,7 +160,44 @@ async function handleInviteRequest(chatId, userId) {
     inline_keyboard: [
       [{ text: '✈️ Telegram-ல் பகிருங்கள் (1-Tap Share)', url: tgShareUrl }],
       [{ text: '💬 WhatsApp-ல் பகிருங்கள்', url: waShareUrl }],
+      [{ text: '👑 VIP Mega Pass (₹29) அன்லாக் செய் (/vip)', callback_data: 'get_vip' }],
       [{ text: '🎯 வினாடி வினா எழுது (/quiz)', callback_data: 'run_quiz' }],
+      [{ text: '📥 இலவச Study Material PDF (/pdf)', callback_data: 'get_pdf' }],
+    ],
+  };
+
+  return tg('sendMessage', {
+    chat_id: chatId,
+    text: text,
+    parse_mode: 'Markdown',
+    reply_markup: markup,
+  });
+}
+
+// Send VIP Mega Pass / Monetization response
+async function handleVipRequest(chatId, userId) {
+  const upiDeepLink = 'upi://pay?pa=maniraja@kvb&pn=Mani%20Raja&tn=Vetri%20TNPSC%20VIP%20Pass&am=29&cu=INR';
+  const waConfirmUrl = `https://wa.me/918300030123?text=${encodeURIComponent(`வணக்கம் Mani! நான் Vetri TNPSC VIP Pass ₹29 செலுத்திவிட்டேன். எனது Telegram User ID: ${userId}, UTR எண்: `)}`;
+
+  const text =
+    `👑 *வெற்றி TNPSC VIP MEGA PASS (அறிமுக சலுகை: ₹29 மட்டும்!)* 🌟\n\n` +
+    `TNPSC Group 4 & 2 தேர்வில் அதிக மதிப்பெண் பெற பிரத்யேக VIP வசதிகள்:\n\n` +
+    `✅ *1. முழு 50 வினாக்கள் OMR மாதிரி தேர்வுகள்:* நேரடி தேர்வு அனுபவம் & மாநில அளவிலான மதிப்பீடு.\n` +
+    `✅ *2. 6-12 சமச்சீர் 1,000 வினா-விடை Golden Revision PDF:* தேர்வு நோக்கில் முழு தொகுப்பு.\n` +
+    `✅ *3. 2026 பிரத்யேக நடப்பு நிகழ்வுகள் & Shortcut குறிப்புகள்.*\n` +
+    `✅ *4. வாழ்நாள் அணுகல் (Lifetime Access) & விளம்பரமில்லா பயிற்சி!*\n\n` +
+    `🔥 *கட்டணம்:* வெறும் *₹29 மட்டும்!* ~₹199~ (85% தள்ளுபடி)\n\n` +
+    `💳 *நேரடி UPI விவரங்கள்:*\n` +
+    `• UPI ID: \`maniraja@kvb\`\n` +
+    `• கணக்கு பெயர்: *Mani Raja*\n` +
+    `• தொகை: *₹29*\n\n` +
+    `👇 கீழே உள்ள பட்டனைத் தட்டி Google Pay, PhonePe அல்லது Paytm மூலம் உடனடியாகச் செலுத்தலாம்!`;
+
+  const markup = {
+    inline_keyboard: [
+      [{ text: '⚡ 1-Click UPI மூலம் ₹29 செலுத்த (PhonePe/GPay)', url: upiDeepLink }],
+      [{ text: '🌐 Webapp-ல் Mock Test & QR Code காண', url: APP_URL }],
+      [{ text: '💬 கட்டணம் செலுத்திய பின் UTR அனுப்ப (WhatsApp)', url: waConfirmUrl }],
       [{ text: '📥 இலவச Study Material PDF (/pdf)', callback_data: 'get_pdf' }],
     ],
   };
@@ -216,6 +254,9 @@ module.exports = async (req, res) => {
       } else if (data === 'get_pdf') {
         await tg('answerCallbackQuery', { callback_query_id: cb.id });
         await handleMaterialRequest(chatId, userId);
+      } else if (data === 'get_vip') {
+        await tg('answerCallbackQuery', { callback_query_id: cb.id });
+        await handleVipRequest(chatId, userId);
       }
       return res.status(200).json({ ok: true });
     }
@@ -259,6 +300,7 @@ module.exports = async (req, res) => {
       const welcomeText = 
         `வணக்கம் ${firstName}! 🎯 *Vetri TNPSC* அதிகாரப்பூர்வ வினாடி வினா பாட்டிற்கு உங்களை அன்போடு வரவேற்கிறோம்! 📚✨\n\n` +
         `TNPSC Group 4, Group 2 & VAO தேர்வுகளுக்கு தயாராக நீங்கள் விரும்பியவாறு பயிற்சி பெறலாம்:\n\n` +
+        `👑 */vip* — *VIP Mega Pass* (50 வினாக்கள் முழு OMR மாதிரித் தேர்வு & 1,000 Qs PDF) - ₹29 மட்டும்!\n` +
         `🔹 */quiz* — உடனடி நேரடி வினாடி வினா\n` +
         `🔹 */tamil* — 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம் & இலக்கியம்\n` +
         `🔹 */ca* — இன்றைய புதிய நடப்பு நிகழ்வுகள்\n` +
@@ -268,9 +310,9 @@ module.exports = async (req, res) => {
 
       const markup = {
         keyboard: [
-          [{ text: '🎯 ஒரு வினாடி வினா எழுது (/quiz)' }, { text: '🎁 நண்பர்களை அழைக்க (/invite)' }],
+          [{ text: '👑 VIP Mega Pass (₹29) (/vip)' }, { text: '🎯 ஒரு வினாடி வினா (/quiz)' }],
           [{ text: '📚 சமச்சீர் தமிழ் (/tamil)' }, { text: '⚡ நடப்பு நிகழ்வுகள் (/ca)' }],
-          [{ text: '📥 இலவச Golden Revision PDF (/pdf)' }],
+          [{ text: '📥 இலவச Golden Revision PDF (/pdf)' }, { text: '🎁 நண்பர்களை அழைக்க (/invite)' }],
         ],
         resize_keyboard: true,
         one_time_keyboard: false,
@@ -282,6 +324,11 @@ module.exports = async (req, res) => {
         parse_mode: 'Markdown',
         reply_markup: markup,
       });
+      return res.status(200).json({ ok: true });
+    }
+
+    if (text === '/vip' || text.includes('/vip') || text.includes('VIP')) {
+      await handleVipRequest(chatId, userId);
       return res.status(200).json({ ok: true });
     }
 
@@ -331,7 +378,7 @@ module.exports = async (req, res) => {
     // Default reply
     await tg('sendMessage', {
       chat_id: chatId,
-      text: `வணக்கம் ${firstName}! வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
+      text: `வணக்கம் ${firstName}! VIP Mega Pass பெற /vip அல்லது வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
     });
 
   } catch (err) {
