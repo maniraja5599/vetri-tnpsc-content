@@ -1,12 +1,12 @@
 # Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
-**Last Self-Updated:** November 16, 2026 (10:19 AM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
+**Last Self-Updated:** November 17, 2026 (12:33 PM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
 
 ---
 
 ## 🚀 Quick Executive Status
 * **Ecosystem:** Vetri TNPSC: Tamil Quiz & VAO (`com.vetritnpsc.app`)
 * **Google Play Closed Testing:** **🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)** (15 active human testers, metadata fully approved).
-* **Master Question Bank:** **98 Total Questions** (75 posted, 23 unposted in reserve: 12 Tamil + 11 CA).
+* **Master Question Bank:** **123 Total Questions** (77 posted, 46 unposted in reserve: 35 Tamil + 11 CA).
 * **Generated Video Shorts (1080x1920 9:16):** **10 Video Shorts ready** in `shorts/`.
 * **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share).
 * **Telegram Channel:** [@VetriTNPSCApp](https://t.me/VetriTNPSCApp) (86+ subscribers, automated morning 07:55 AM & evening 08:25 PM polls).
@@ -23,7 +23,7 @@
 | :--- | :--- |
 | `c:\Moved_From_E\Projects\Vetri TNPSC` | Flutter Android project source code. |
 | `c:\Moved_From_E\Projects\vetri-tnpsc-content` | Web, API, and content synchronization repository. |
-| `content.json` | Master question bank (98 questions) auto-polled by mobile app & webapp. |
+| `content.json` | Master question bank (123 questions) auto-polled by mobile app & webapp. |
 | `api/telegram.js` | 24/7 serverless webhook for `@VetriTNPSCQuizBot` on Vercel. |
 | `materials/vetri_tnpsc_group4_tamil_golden_revision.pdf` | High-value 603 KB Tamil revision lead magnet. |
 | `scripts/self_updater.py` | Master self-updating engine (runs on start to self-heal & self-sync). |

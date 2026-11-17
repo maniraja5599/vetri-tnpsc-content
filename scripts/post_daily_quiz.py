@@ -63,6 +63,7 @@ def send_message(text, reply_markup=None):
     payload = {
         "chat_id": TELEGRAM_CHAT_ID,
         "text": text,
+        "parse_mode": "HTML",
         "disable_web_page_preview": False,
     }
     if reply_markup:
@@ -120,28 +121,32 @@ def main():
             print(f"Error posting poll: {err}")
 
     if newly_posted:
-        # Build viral 1-tap share link & buttons
+        PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=com.vetritnpsc.app"
         share_url = "https://t.me/share/url?" + urllib.parse.urlencode({
-            "url": "https://t.me/VetriTNPSCApp",
-            "text": "🎯 TNPSC Group 4 & 2 பொதுத்தமிழ் மற்றும் தினசரி நடப்பு நிகழ்வுகள் வினாடி வினா! தினமும் இலவசமாகப் பயிற்சி செய்ய இணையுங்கள்: "
+            "url": PLAYSTORE_URL,
+            "text": "🎯 TNPSC Group 4 & 2 பொதுத்தமிழ் மற்றும் தினசரி நடப்பு நிகழ்வுகள் வினாடி வினா! உடனே Play Store-ல் 'Vetri TNPSC' Install செய்யுங்கள்: "
         })
 
         reply_markup = {
             "inline_keyboard": [
                 [
+                    {"text": "📲 Google Play Store-ல் Install செய்", "url": PLAYSTORE_URL}
+                ],
+                [
                     {"text": "🚀 நண்பர்களுக்குப் பகிருங்கள் (1-Tap Share)", "url": share_url}
                 ],
                 [
-                    {"text": "📱 Vetri TNPSC App-ல் பயிற்சி செய்ய", "url": "https://vetri-tnpsc-content.vercel.app"}
+                    {"text": "🌐 Browser-ல் Mock Test எழுத", "url": "https://vetri-tnpsc-content.vercel.app"}
                 ]
             ]
         }
 
         promo_text = (
-            "🎯 TNPSC Group 4 & 2 பொதுத்தமிழ் மற்றும் தினசரி நடப்பு நிகழ்வுகள்!\n\n"
-            "⏱️ 50 வினாக்கள் கொண்ட Mock Tests மற்றும் பிழை திருத்தம் (Revise) செய்ய:\n"
-            "📲 Vetri TNPSC App: https://vetri-tnpsc-content.vercel.app\n\n"
-            "💡 இந்த வினாடி வினா உங்கள் நண்பர்களுக்கும் உதவ, கீழே உள்ள பட்டனைத் தட்டி பகிருங்கள்! 👇"
+            "🎯 <b>TNPSC Group 4 & 2 பொதுத்தமிழ் & நடப்பு நிகழ்வுகள்!</b>\n\n"
+            "⏱️ 50 வினாக்கள் OMR Mock Tests மற்றும் விரிவான விடைகளுடன் பயிற்சி பெற Vetri TNPSC செயலியை உடனே Install செய்யுங்கள்:\n\n"
+            f"📲 <b>Play Store:</b> {PLAYSTORE_URL}\n"
+            "🌐 <b>Web App:</b> https://vetri-tnpsc-content.vercel.app\n\n"
+            "💡 இந்த வினாடி வினா உங்கள் நண்பர்களுக்கும் உதவ, கீழே உள்ள பட்டனைத் தட்டி Telegram / WhatsApp குரூப்களில் பகிருங்கள்! 👇"
         )
         try:
             send_message(promo_text, reply_markup=reply_markup)
