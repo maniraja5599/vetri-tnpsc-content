@@ -130,23 +130,27 @@ def main():
         reply_markup = {
             "inline_keyboard": [
                 [
+                    {"text": "👑 VIP Mega Pass (₹29) அன்லாக் செய்", "url": "https://vetri-tnpsc-content.vercel.app/"}
+                ],
+                [
                     {"text": "📲 Google Play Store-ல் Install செய்", "url": PLAYSTORE_URL}
                 ],
                 [
-                    {"text": "🚀 நண்பர்களுக்குப் பகிருங்கள் (1-Tap Share)", "url": share_url}
+                    {"text": "🌐 Browser-ல் Mock Test எழுத", "url": "https://vetri-tnpsc-content.vercel.app"}
                 ],
                 [
-                    {"text": "🌐 Browser-ல் Mock Test எழுத", "url": "https://vetri-tnpsc-content.vercel.app"}
+                    {"text": "🚀 நண்பர்களுக்குப் பகிருங்கள் (1-Tap Share)", "url": share_url}
                 ]
             ]
         }
 
         promo_text = (
             "🎯 <b>TNPSC Group 4 & 2 பொதுத்தமிழ் & நடப்பு நிகழ்வுகள்!</b>\n\n"
-            "⏱️ 50 வினாக்கள் OMR Mock Tests மற்றும் விரிவான விடைகளுடன் பயிற்சி பெற Vetri TNPSC செயலியை உடனே Install செய்யுங்கள்:\n\n"
+            "⏱️ முழு 50-வினாக்கள் OMR Mock Tests மற்றும் 1,000 வினா-விடை Golden Revision PDF பெற Vetri TNPSC செயலியை உடனே பயன்படுத்துங்கள்:\n\n"
+            "👑 <b>VIP Mega Pass:</b> வெறும் <b>₹29 மட்டும்!</b> (முழு மாதிரித் தேர்வு & PDF கையேடு)\n"
             f"📲 <b>Play Store:</b> {PLAYSTORE_URL}\n"
             "🌐 <b>Web App:</b> https://vetri-tnpsc-content.vercel.app\n\n"
-            "💡 இந்த வினாடி வினா உங்கள் நண்பர்களுக்கும் உதவ, கீழே உள்ள பட்டனைத் தட்டி Telegram / WhatsApp குரூப்களில் பகிருங்கள்! 👇"
+            "💡 இந்த வினாடி வினா உங்கள் நண்பர்களுக்கும் உதவ, கீழே உள்ள பட்டனைத் தட்டி பகிருங்கள்! 👇"
         )
         try:
             send_message(promo_text, reply_markup=reply_markup)
