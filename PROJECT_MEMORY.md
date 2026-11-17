@@ -1,12 +1,12 @@
 # Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
-**Last Self-Updated:** November 17, 2026 (12:34 PM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
+**Last Self-Updated:** November 17, 2026 (03:36 PM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
 
 ---
 
 ## 🚀 Quick Executive Status
 * **Ecosystem:** Vetri TNPSC: Tamil Quiz & VAO (`com.vetritnpsc.app`)
 * **Google Play Closed Testing:** **🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)** (15 active human testers, metadata fully approved).
-* **Master Question Bank:** **123 Total Questions** (79 posted, 44 unposted in reserve: 33 Tamil + 11 CA).
+* **Master Question Bank:** **123 Total Questions** (83 posted, 40 unposted in reserve: 29 Tamil + 11 CA).
 * **Generated Video Shorts (1080x1920 9:16):** **10 Video Shorts ready** in `shorts/`.
 * **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share).
 * **Telegram Channel:** [@VetriTNPSCApp](https://t.me/VetriTNPSCApp) (86+ subscribers, automated morning 07:55 AM & evening 08:25 PM polls).
@@ -45,8 +45,7 @@
 ---
 
 ## 🎯 Active Strategic Objectives
-1. **Drive Daily Play Store Downloads:** Maintain twice-daily Telegram quizzes (08:30 AM & 06:30 PM IST) with 1-Tap Share buttons and Play Store CTAs to convert Telegram community into app installs.
-2. **Review Velocity Campaign:** Encourage active Telegram students to leave 5-star ratings & reviews on Google Play Store to rank top 3 in organic search.
-3. **Daily Operations & Metrics Tracking:** Record all daily growth actions and compute Day-over-Day deltas in `DAILY_OPERATIONS_LOG.md` and `scripts/track_growth_metrics.py`.
-4. **AdMob Store Link Sync:** Verify Google Play index sync in AdMob `apps/confirm` and link `com.vetritnpsc.app` to finalize "Ready" ad serving status.
+1. **Maintain Active Engagement During Review:** Keep twice-daily Telegram quizzes and user tests flowing while Google evaluates the application (2-7 days).
+2. **Trader Status Declaration:** Complete the EU DSA Non-Trader declaration in Google Play Console.
+3. **Daily Content Syndication:** Post daily YouTube Shorts, Instagram Reels, and engage via comments.
 4. **Instant Production Promotion:** As soon as Google review approves access, promote the Closed Testing release to Production Live!

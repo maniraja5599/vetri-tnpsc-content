@@ -658,6 +658,113 @@
   .share-btn:hover {
     transform: translateY(-2px);
   }
+
+  /* Scorecard High-Intent App Download Banner */
+  .scorecard-app-cta {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.25) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    border-radius: 14px;
+    padding: 16px 14px;
+    margin: 16px 0 14px;
+    text-align: center;
+  }
+  .app-cta-badge {
+    display: inline-block;
+    background: #10b981;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .app-cta-text {
+    font-size: 0.88rem;
+    color: #e2e8f0;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .scorecard-play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    color: #0f172a;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .scorecard-play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  }
+  .scorecard-play-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Floating Bottom Smart App Banner */
+  .sticky-app-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  }
+  .banner-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .banner-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .banner-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .banner-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: #ffffff;
+  }
+  .banner-sub {
+    font-size: 0.74rem;
+    color: #94a3b8;
+  }
+  .banner-btn {
+    background: #10b981;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .banner-btn:hover {
+    background: #059669;
+    transform: scale(1.05);
+  }
   .share-wa {
     background: #25d366;
     color: #052e16;
@@ -832,6 +939,21 @@
       </div>
       <div class="rank-title" id="rankTitle">🥇 VAO Officer Rank!</div>
       <div class="rank-desc" id="rankDesc">அற்புதம்! தமிழ்நாடு அரசுப் பணியாளர் தேர்வாணையத் தேர்வில் உங்கள் வெற்றி உறுதியாகிறது.</div>
+
+      <!-- High-Converting App Download Prompt -->
+      <div class="scorecard-app-cta">
+        <div class="app-cta-badge">🔥 முழுமையான மாதிரித் தேர்வு ஆப்பில் தயார்</div>
+        <div class="app-cta-text">50 வினாக்கள் கொண்ட முழுமையான OMR மாதிரித் தேர்வு & விரிவான விடைக்கு Vetri TNPSC செயலியை உடனே Install செய்யுங்கள்!</div>
+        <a href="https://play.google.com/store/apps/details?id=com.vetritnpsc.app" class="scorecard-play-btn" target="_blank">
+          <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z" fill="#00E676"/>
+            <path d="M47 38.8C42.8 45.3 40.5 53.6 40.5 63v386c0 9.4 2.3 17.7 6.5 24.2l209.6-217.5L47 38.8z" fill="#00B0FF"/>
+            <path d="M325.3 277.7l60.1 60.1-280.8 161.2 220.7-221.3z" fill="#FF1744"/>
+            <path d="M459.7 238.1l-74.3-43.7-60.1 61.6 60.1 61.6 74.3-43.7c21.3-12.5 21.3-33.3 0-35.8z" fill="#FFD600"/>
+          </svg>
+          <span>Play Store-ல் இலவசமாக Install செய் ➔</span>
+        </a>
+      </div>
 
       <!-- Viral Share Actions -->
       <div class="share-grid">
@@ -1145,6 +1267,20 @@
   loadQuizData();
 })();
 </script>
+
+<!-- Sticky Mobile Smart App Banner -->
+<div class="sticky-app-banner">
+  <div class="banner-left">
+    <img src="icon-512.png" alt="Vetri TNPSC" class="banner-icon">
+    <div class="banner-info">
+      <span class="banner-title">Vetri TNPSC App</span>
+      <span class="banner-sub">Google Play Store · இலவசம்</span>
+    </div>
+  </div>
+  <a href="https://play.google.com/store/apps/details?id=com.vetritnpsc.app" class="banner-btn" target="_blank">
+    Install
+  </a>
+</div>
 
 </body>
 </html>

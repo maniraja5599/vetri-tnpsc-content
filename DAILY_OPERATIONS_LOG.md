@@ -28,6 +28,12 @@
   - Play Console Production Release 1.0.0 healthy (17 active devices, 0.00% crash rate).
   - AdMob 7-day ad requests surged from **91 to 205 (+125.3%)**, proving high student engagement in OMR test mode.
   - `app-ads.txt` 100% verified on `vetri-tnpsc-content.vercel.app`.
+  - **Web-to-App Conversion Engine Live**: Added high-intent Scorecard Play Store CTA + Sticky Floating Smart App Install Banner to `index.html` on `vetri-tnpsc-content.vercel.app` to convert 100% of web test takers into mobile app installs.
+- **🚀 Afternoon App Download Boost Campaign**:
+  - Executed `scripts/boost_downloads_campaign.py` on Telegram channel `@VetriTNPSCApp`.
+  - Sent high-converting 50-Q Full Mock Test Challenge broadcast (Msg ID: 145) with direct Google Play Store Install button and 5-Star Rating support button.
+  - Published Batch 3 interactive Tamil polls `ta0048` (Perunchithiranar) & `ta0049` (Mullaippattu) with explanations linking to Play Store app.
+  - Total Telegram quizzes published reached **83 quizzes**.
 - **🤖 Autonomous Heuristic Built**:
   - Implemented `scripts/track_growth_metrics.py` to autonomously query Telegram Bot API (`getChatMemberCount`), log daily metrics to `growth_metrics_history.json`, and recommend priority growth levers.
 - **💡 Self-Improvement Insight**:
