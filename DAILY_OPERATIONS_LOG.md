@@ -29,6 +29,15 @@
   - AdMob 7-day ad requests surged from **91 to 205 (+125.3%)**, proving high student engagement in OMR test mode.
   - `app-ads.txt` 100% verified on `vetri-tnpsc-content.vercel.app`.
   - **Web-to-App Conversion Engine Live**: Added high-intent Scorecard Play Store CTA + Sticky Floating Smart App Install Banner to `index.html` on `vetri-tnpsc-content.vercel.app` to convert 100% of web test takers into mobile app installs.
+- **🎬 Multi-Platform Video & Shorts Growth**:
+  - **YouTube Studio Connected**: Verified channel **"Vetri TNPSC: Tamil Quiz & VAO"** (`UCdJ6K-3KSqL0N9uQzCdhZKg`) logged in directly on Chrome.
+  - **Live Short Published Directly via Antigravity**: Published `tnpsc_quiz_short_02.mp4` to YouTube Shorts:
+    - **URL**: `https://youtube.com/shorts/eO3c4B7ws18`
+    - **Title**: *TNPSC Group 4 & 2 பொதுத்தமிழ் மாதிரி வினாடி வினா #shorts #tnpsc #tamil*
+    - **CTA**: Direct Play Store install link in description & tags.
+  - **10 Full HD Video Shorts Ready**: 1080x1920 (9:16) MP4 files staged in `shorts/` (`tnpsc_group4_daily_short_01.mp4` to `tnpsc_quiz_short_63.mp4`).
+  - **Mandatory Operating Rule (Strictly Enforced)**: All daily social syndication (YouTube Shorts & Instagram Reels) must be driven directly from Antigravity via real Chrome browser sessions, not blind unverified Python scripts.
+  - **Instagram Profile (@vetri.tnpsc)**: Target destination for daily Reels syndication.
 - **🚀 Afternoon App Download Boost Campaign**:
   - Executed `scripts/boost_downloads_campaign.py` on Telegram channel `@VetriTNPSCApp`.
   - Sent high-converting 50-Q Full Mock Test Challenge broadcast (Msg ID: 145) with direct Google Play Store Install button and 5-Star Rating support button.
