@@ -4,6 +4,7 @@
     "installs": 16,
     "ad_requests": 91,
     "active_devices": 16,
+    "telegram_subscribers": 81,
     "question_bank_total": 98,
     "tamil_questions": 45,
     "general_questions": 53,
@@ -14,9 +15,10 @@
     "installs": 17,
     "ad_requests": 205,
     "active_devices": 17,
+    "telegram_subscribers": 83,
     "question_bank_total": 123,
     "tamil_questions": 70,
     "general_questions": 53,
-    "telegram_quizzes_posted": 79
+    "telegram_quizzes_posted": 81
   }
 ]

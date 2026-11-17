@@ -45,7 +45,8 @@
 ---
 
 ## 🎯 Active Strategic Objectives
-1. **Maintain Active Engagement During Review:** Keep twice-daily Telegram quizzes and user tests flowing while Google evaluates the application (2-7 days).
-2. **Trader Status Declaration:** Complete the EU DSA Non-Trader declaration in Google Play Console.
-3. **Daily Content Syndication:** Post daily YouTube Shorts, Instagram Reels, and engage via comments.
+1. **Drive Daily Play Store Downloads:** Maintain twice-daily Telegram quizzes (08:30 AM & 06:30 PM IST) with 1-Tap Share buttons and Play Store CTAs to convert Telegram community into app installs.
+2. **Review Velocity Campaign:** Encourage active Telegram students to leave 5-star ratings & reviews on Google Play Store to rank top 3 in organic search.
+3. **Daily Operations & Metrics Tracking:** Record all daily growth actions and compute Day-over-Day deltas in `DAILY_OPERATIONS_LOG.md` and `scripts/track_growth_metrics.py`.
+4. **AdMob Store Link Sync:** Verify Google Play index sync in AdMob `apps/confirm` and link `com.vetritnpsc.app` to finalize "Ready" ad serving status.
 4. **Instant Production Promotion:** As soon as Google review approves access, promote the Closed Testing release to Production Live!
