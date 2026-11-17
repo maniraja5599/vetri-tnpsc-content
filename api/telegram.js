@@ -195,8 +195,7 @@ async function handleVipRequest(chatId, userId) {
 
   const markup = {
     inline_keyboard: [
-      [{ text: '⚡ 1-Click UPI மூலம் ₹29 செலுத்த (PhonePe/GPay)', url: upiDeepLink }],
-      [{ text: '🌐 Webapp-ல் Mock Test & QR Code காண', url: APP_URL }],
+      [{ text: '⚡ Webapp-ல் ₹29 செலுத்தி VIP பெற (PhonePe/GPay)', url: APP_URL }],
       [{ text: '💬 கட்டணம் செலுத்திய பின் UTR அனுப்ப (WhatsApp)', url: waConfirmUrl }],
       [{ text: '📥 இலவச Study Material PDF (/pdf)', callback_data: 'get_pdf' }],
     ],

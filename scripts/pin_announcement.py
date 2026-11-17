@@ -4,8 +4,9 @@ import urllib.request
 
 def pin_message():
     token = None
-    if os.path.exists(".env"):
-        with open(".env", "r", encoding="utf-8") as f:
+    env_path = os.path.join(os.path.dirname(__file__), "..", ".env")
+    if os.path.exists(env_path):
+        with open(env_path, "r", encoding="utf-8") as f:
             for line in f:
                 if line.startswith("TELEGRAM_BOT_TOKEN="):
                     token = line.strip().split("=", 1)[1].strip("\"'")
@@ -16,7 +17,7 @@ def pin_message():
 
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{token}/pinChatMessage",
-        data=json.dumps({"chat_id": "@VetriTNPSCApp", "message_id": 121, "disable_notification": False}).encode("utf-8"),
+        data=json.dumps({"chat_id": "@VetriTNPSCApp", "message_id": 152, "disable_notification": False}).encode("utf-8"),
         headers={"Content-Type": "application/json"}
     )
     try:
