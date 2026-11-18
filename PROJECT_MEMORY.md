@@ -1,17 +1,16 @@
 # Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
-**Last Self-Updated:** November 17, 2026 (03:58 PM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
+**Last Self-Updated:** November 18, 2026 (08:32 AM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
 
 ---
 
 ## 🚀 Quick Executive Status
 * **Ecosystem:** Vetri TNPSC: Tamil Quiz & VAO (`com.vetritnpsc.app`)
 * **Google Play Closed Testing:** **🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)** (15 active human testers, metadata fully approved).
-* **Master Question Bank:** **123 Total Questions** (83 posted, 40 unposted in reserve: 29 Tamil + 11 CA).
+* **Master Question Bank:** **123 Total Questions** (87 posted, 36 unposted in reserve: 25 Tamil + 11 CA).
 * **Generated Video Shorts (1080x1920 9:16):** **10 Video Shorts ready** in `shorts/`.
-* **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share, ₹29 VIP Mega Pass UPI Paywall & 50-Q Full Mock).
+* **Web App:** [https://vetri-tnpsc-content.vercel.app](https://vetri-tnpsc-content.vercel.app) (Live 5-Q Test, Gamified Scorecard, WhatsApp Status Share).
 * **Telegram Channel:** [@VetriTNPSCApp](https://t.me/VetriTNPSCApp) (86+ subscribers, automated morning 07:55 AM & evening 08:25 PM polls).
-* **Telegram Bot:** `@VetriTNPSCQuizBot` (Vercel serverless webhook, Force-Join PDF Funnel, `/invite` Referral Engine, `/vip` ₹29 UPI Mega Pass Handler, `/tamil` and `/ca` question filters).
-* **Monetization Engine (Live):** ₹29 introductory VIP Mega Pass (UPI ID: `maniraja@kvb`, Payee: Mani Raja) unlocking 50-Q full OMR mock tests, 1,000 Qs Golden Revision PDF, and WhatsApp UTR verification.
+* **Telegram Bot:** `@VetriTNPSCQuizBot` (Vercel serverless webhook, Force-Join PDF Funnel, `/invite` Referral Engine, `/tamil` and `/ca` question filters).
 * **Lead Magnet PDF:** [Golden Revision Booklet](https://vetri-tnpsc-content.vercel.app/materials/vetri_tnpsc_group4_tamil_golden_revision.pdf) (Published on Telegram channel & bot).
 * **YouTube Channel:** [Vetri TNPSC: Tamil Quiz & VAO](https://www.youtube.com/@OppositeMelodies-yy8zg).
 * **Instagram Profile:** [@vetri.tnpsc](https://www.instagram.com/vetri.tnpsc/).
