@@ -18,11 +18,17 @@
 
 ### [2026-11-18] — Wednesday (Daily Syndication & Video Publish)
 - **🎬 YouTube Shorts Published Directly via Antigravity**:
-  - Uploaded and published `tnpsc_quiz_short_03.mp4` to official channel **Vetri TNPSC: Tamil Quiz & VAO**.
-  - **Live URL**: `https://youtube.com/shorts/rVsvIr6wvcY`
-  - **Title**: *TNPSC பொதுத்தமிழ் தினசரி வினாடி வினா 03 #shorts #tnpsc #group4 #tamil*
+  - Uploaded and published `tnpsc_quiz_short_04.mp4` to official channel **Vetri TNPSC: Tamil Quiz & VAO**.
+  - **Title**: *TNPSC பொதுத்தமிழ் தினசரி வினாடி வினா 04 #shorts #tnpsc #group4 #tamil*
   - **CTA**: Direct Play Store install link in description & tags (`https://play.google.com/store/apps/details?id=com.vetritnpsc.app`).
-  - **Previous Short Tracking**: First Short (`eO3c4B7ws18`) gained 4 views in initial 16 hours.
+  - Previously uploaded: `tnpsc_quiz_short_03.mp4` (`rVsvIr6wvcY`).
+- **💬 YouTube Organic Top Video Comments Seeded**:
+  - Posted 2 authentic appreciation + Play Store discovery comments on top fresh TNPSC videos:
+    1. **Online Tnpsc Coaching** (`c0lxJB0nWzw` - 7.7K views): *ஒரே வீடியோவில் முழு தமிழ் சொல்லகராதி UNIT 2*.
+    2. **GURUNATH IAS ACADEMY** (`CYDgiHhQAeo` - 1.2 lakh views): *இவளோ ஈசியா GROUP-4 இருக்குமா?*.
+- **📸 Instagram Status**:
+  - Inspected active account on Chrome (`anjaneyaborewells`).
+  - Account Switcher ready for `@fifto.official` and personal profile; ready to syndicate Reels once switched.
 - **👥 Telegram Channel Routine (08:30 AM IST)**:
   - Published morning daily Tamil literature quizzes `ta0070` (‘தேனினும் இனிய நற்செந்தமிழ் மொழியே’) and `ta0069` (‘சிலம்புச் செல்வர்’ ம.பொ.சி) with answer explanations and viral 1-Tap share buttons (Poll IDs: 157, 158).
   - Total Telegram quizzes published reached **87 quizzes**.
