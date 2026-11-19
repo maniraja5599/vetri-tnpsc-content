@@ -45,7 +45,7 @@ def get_telegram_subscribers():
             pass
     return 83
 
-def record_today(installs=17, ad_requests=205, active_devices=17):
+def record_today(installs=17, ad_requests=369, active_devices=17):
     today = datetime.now().strftime("%Y-%m-%d")
     history = load_json(METRICS_LOG, [])
     
