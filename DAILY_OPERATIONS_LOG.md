@@ -19,11 +19,13 @@
 ## 🗓️ Detailed Daily Logs
 
 ### [2026-11-19] — Thursday (Monetization Linking, Video Syndication & Growth Acceleration)
-- **🎉 Google AdMob Store Verification (Historic Milestone)**:
+- **🎉 Google AdMob Store Verification & Full Approval (Historic Milestone - 12:49 PM IST)**:
+  - Official Approval Email received from Google AdMob (`admob-noreply@google.com`): *"App approved: Vetri TNPSC: Tamil Quiz & VAO (Android) — You're all set! ... we've lifted the ad serving limits and restrictions put in place during the review."*
   - Google Play Store crawler successfully synced `com.vetritnpsc.app` with Google AdMob!
   - Connected `Vetri TNPSC: Tamil Quiz & VAO (FiFTO)` to existing AdMob App ID `ca-app-pub-6785588120865456~3423491179`.
-  - AdMob verified with green checkmark: *"You've successfully verified Vetri TNPSC: Tamil Quiz & VAO (Android)"*.
-  - 7-Day ad requests surged to **369 (+80.0%)** with **166 impressions** and **US$0.22 estimated revenue**.
+  - AdMob verified with green checkmark: **`check_circle Ready`** (Status details: *Ad serving enabled*).
+  - **`app-ads.txt` Audit:** Verified at `https://vetri-tnpsc-content.vercel.app/app-ads.txt` — **100% of queries authorised**, crawled 1 hour ago (192 queries verified).
+  - 7-Day ad requests surged to **369 (+80.0%)** with **166 impressions** and **US$0.23 estimated revenue**.
 - **🎬 YouTube Short 05 Published Live**:
   - Uploaded and published `tnpsc_quiz_short_05.mp4` via WebSocket pipeline to official channel **Vetri TNPSC: Tamil Quiz & VAO**.
   - **Title**: *TNPSC பொதுத்தமிழ் மாதிரி வினாடி வினா 05 #shorts #tnpsc #group4 #tamil*
