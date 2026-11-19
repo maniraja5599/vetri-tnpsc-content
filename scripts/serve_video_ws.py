@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import os
 
-VIDEO_PATH = os.path.abspath('shorts/tnpsc_quiz_short_04.mp4')
+VIDEO_PATH = os.path.abspath('shorts/tnpsc_quiz_short_05.mp4')
 
 async def handler(websocket):
     print("Client connected to WebSocket server")
