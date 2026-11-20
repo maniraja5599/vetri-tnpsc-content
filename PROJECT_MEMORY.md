@@ -1,5 +1,30 @@
 # Vetri TNPSC Ecosystem - Project Memory & Handoff Summary
-**Last Self-Updated:** November 19, 2026 (10:27 AM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
+**Last Self-Updated:** November 20, 2026 (07:08 PM IST) · **Testing Status:** 🚀 100% LIVE ON GOOGLE PLAY STORE WORLDWIDE (Public Production Launch!)
+
+---
+
+## 🛑 MANDATORY CORE RULES: ANTIGRAVITY_RULES.md (Strict Override)
+> **CRITICAL DIRECTIVE:** Before executing any growth or social-media task, you MUST read and follow [ANTIGRAVITY_RULES.md](file:///c:/Moved_From_E/Projects/vetri-tnpsc-content/ANTIGRAVITY_RULES.md). It strictly overrides this document, `DAILY_OPERATIONS_LOG.md`, and the `vetri-tnpsc-growth-engine` skill.
+>
+> 1. **Who Posts What:**
+>    - **Instagram Feed Carousels & Reels / YouTube Shorts:** Owned & scheduled by Metricool (via Claude Code) from `posts/` (Nov 21 – Dec 20, 2026) and `shorts/`. Do NOT post by hand. Always check the Metricool planner first.
+>    - **Telegram Polls:** Managed exclusively by GitHub Actions (`daily-telegram-quiz.yml`). Do not post extra manual polls.
+>    - **Current Affairs:** Managed via PR + verify + auto-merge pipeline. Never edit `content.json` directly.
+>    - **Play Store / AdMob / Console Settings:** Mani (Owner) only. Read-only.
+> 2. **Allowed:**
+>    - Reply politely to comments and DMs on our own channels (Tamil/Tanglish).
+>    - Generate assets on-demand when requested (`scripts/make_daily_posts.py`, `scripts/generate_quiz_short.py`) into `posts/` and `shorts/` without self-posting.
+>    - Log real, unhyped numbers into `DAILY_OPERATIONS_LOG.md`.
+>    - Neutral review prompts ("Vetri TNPSC app பயனுள்ளதாக இருந்தால் Play Store-ல் உங்கள் review-ஐ எழுதுங்கள்").
+> 3. **Strictly Prohibited (Never Do These):**
+>    - ❌ NO promotional comments on other people's YouTube videos or Instagram posts (`scripts/youtube_growth_engine.py` permanently stopped).
+>    - ❌ NEVER ask for "5-star" ratings or trade incentives for reviews.
+>    - ❌ NO bots, fake accounts, purchased followers, or spam/mass DMs.
+>    - ❌ NEVER post Vetri TNPSC content to `@anjaneyaborewells` or any other brand.
+>    - ❌ NO overclaiming ("1000+ questions", "official TNPSC app"). Keep standard non-affiliation disclaimer.
+>    - ❌ NEVER commit secrets (.env, tokens, keystore).
+>    - ❌ NEVER spend money or change account settings without explicit owner consent.
+> 4. **When in doubt:** Stop and ask Mani in one short Tanglish message.
 
 ---
 
