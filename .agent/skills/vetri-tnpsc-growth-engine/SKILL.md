@@ -7,6 +7,9 @@ description: >
 
 # Vetri TNPSC Growth & Automation Engine (Master Project Skill)
 
+> [!IMPORTANT]
+> **MANDATORY OVERRIDE:** Before executing any growth or social-media task, read and follow [ANTIGRAVITY_RULES.md](file:///c:/Moved_From_E/Projects/vetri-tnpsc-content/ANTIGRAVITY_RULES.md). It overrides this skill, `PROJECT_MEMORY.md`, and `DAILY_OPERATIONS_LOG.md`.
+
 This skill serves as the single source of truth for the **Vetri TNPSC** ecosystem across Google Play, Telegram, Web, YouTube, and Instagram.
 
 ---
