@@ -142,9 +142,10 @@ async function handleInviteRequest(chatId, userId) {
   const inviteLink = `https://t.me/VetriTNPSCQuizBot?start=ref_${userId}`;
   const shareText = 
     `🎯 TNPSC Group 4 & 2 தேர்வுக்கு தயாராகிறீர்களா? 📚✨\n` +
-    `தினசரி இலவச வினாடி வினா, சமச்சீர் தமிழ் குறிப்புகள் & Golden Revision PDF பெற வெற்றி TNPSC Bot-ல் இணையுங்கள்! 👇\n` +
-    inviteLink;
-  const tgShareUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent('🎯 TNPSC Group 4 & 2 இலவச வினாடி வினா & Golden Revision PDF பெற வெற்றி TNPSC Bot-ல் இணையுங்கள்! 📚✨')}`;
+    `தினசரி இலவச மாதிரி தேர்வுகள், சமச்சீர் தமிழ் வினாடி வினா & Golden Revision PDF பெற வெற்றி TNPSC செயலியை உடனே Install செய்யுங்கள்! 👇\n\n` +
+    `📲 Google Play Store App: ${PLAYSTORE_URL}\n` +
+    `🤖 Telegram Quiz Bot: ${inviteLink}`;
+  const tgShareUrl = `https://t.me/share/url?url=${encodeURIComponent(PLAYSTORE_URL)}&text=${encodeURIComponent('🎯 TNPSC Group 4 & 2 இலவச மாதிரி தேர்வுகள் & சமச்சீர் தமிழ் பயிற்சி பெற Vetri TNPSC செயலியை உடனே Install செய்யுங்கள்! 📲✨')}`;
   const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
 
   const text = 
@@ -299,6 +300,7 @@ module.exports = async (req, res) => {
       const welcomeText = 
         `வணக்கம் ${firstName}! 🎯 *Vetri TNPSC* அதிகாரப்பூர்வ வினாடி வினா பாட்டிற்கு உங்களை அன்போடு வரவேற்கிறோம்! 📚✨\n\n` +
         `TNPSC Group 4, Group 2 & VAO தேர்வுகளுக்கு தயாராக நீங்கள் விரும்பியவாறு பயிற்சி பெறலாம்:\n\n` +
+        `📲 */app* — *Play Store Android App* (100+ மாதிரி தேர்வுகள் & சமச்சீர் வினாடி வினா - 100% இலவசம்!)\n` +
         `👑 */vip* — *VIP Mega Pass* (50 வினாக்கள் முழு OMR மாதிரித் தேர்வு & 1,000 Qs PDF) - ₹29 மட்டும்!\n` +
         `🔹 */quiz* — உடனடி நேரடி வினாடி வினா\n` +
         `🔹 */tamil* — 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம் & இலக்கியம்\n` +
@@ -309,9 +311,10 @@ module.exports = async (req, res) => {
 
       const markup = {
         keyboard: [
-          [{ text: '👑 VIP Mega Pass (₹29) (/vip)' }, { text: '🎯 ஒரு வினாடி வினா (/quiz)' }],
-          [{ text: '📚 சமச்சீர் தமிழ் (/tamil)' }, { text: '⚡ நடப்பு நிகழ்வுகள் (/ca)' }],
-          [{ text: '📥 இலவச Golden Revision PDF (/pdf)' }, { text: '🎁 நண்பர்களை அழைக்க (/invite)' }],
+          [{ text: '📲 Android App (Play Store) (/app)' }, { text: '👑 VIP Mega Pass (₹29) (/vip)' }],
+          [{ text: '🎯 ஒரு வினாடி வினா (/quiz)' }, { text: '📚 சமச்சீர் தமிழ் (/tamil)' }],
+          [{ text: '⚡ நடப்பு நிகழ்வுகள் (/ca)' }, { text: '📥 இலவச Golden Revision PDF (/pdf)' }],
+          [{ text: '🎁 நண்பர்களை அழைக்க (/invite)' }],
         ],
         resize_keyboard: true,
         one_time_keyboard: false,
@@ -377,7 +380,7 @@ module.exports = async (req, res) => {
     // Default reply
     await tg('sendMessage', {
       chat_id: chatId,
-      text: `வணக்கம் ${firstName}! VIP Mega Pass பெற /vip அல்லது வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
+      text: `வணக்கம் ${firstName}! Play Store ஆப் பெற /app அல்லது VIP Mega Pass பெற /vip அல்லது வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
     });
 
   } catch (err) {
