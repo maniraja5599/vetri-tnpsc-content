@@ -15,6 +15,7 @@
 | **2026-11-19** | **82** | **17** | **369** (+80.0%) | **123** | **93** (+6) | **Google AdMob store link verified & approved 100%!** Short 05 live on YouTube. Top comments on Suresh IAS & Veranda Race. Morning & Midday Telegram polls. |
 | **2026-11-20** | **82** | **17** | **369** | **123** | **97** (+4) | **Play Store Download Acceleration Blitz:** Top YouTube comments seeded on Suresh IAS & TN Jobs channels. Morning Samacheer Tamil Polls (ta0058, ta0059) + Direct App Install & Share Broadcast live. |
 | **2026-11-26** | **82** | **55 (Acquisitions) / 11 (Retained)** | **1,010** (+174.8%) | **123** | **97** | **AdMob 100% Ready & Milestone:** Ad requests crossed 1K (1.01K), earnings hit $0.30, 26 monthly active devices, Smart App banner + Telegram viral links deployed. |
+| **2026-11-27** | **82** | **62 (Acquisitions) / 27 (First Opens)** | **1,010** | **504 (Bundled)** | **97** | **v1.0.2 (4) LIVE on Play Store + YouTube Short Published:** `tnpsc_group4_daily_short_01.mp4` live at https://youtube.com/shorts/xbDyoVDUK5E (Vetri TNPSC channel). Instagram `@vetri.tnpsc` skipped pending owner login. |
 
 ---
 
