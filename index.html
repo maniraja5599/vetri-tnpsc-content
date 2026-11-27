@@ -1108,7 +1108,7 @@
 
   <!-- 100% FREE pill -->
   <div>
-    <div class="free-badge-pill">100% FREE • TNPSC 2026</div>
+    <div class="free-badge-pill">100% FREE • 500+ Qs • 20 MOCK TESTS</div>
   </div>
 
   <!-- Hero Title -->
@@ -1116,7 +1116,7 @@
 
   <!-- Subtitle -->
   <p class="hero-desc">
-    TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம், இலக்கியம், தினசரி நடப்பு நிகழ்வுகள் & மாதிரி தேர்வுகள்.
+    TNPSC Group 4 & 2 தேர்வர்களுக்கான பிரத்யேக செயலி. 500+ சமச்சீர் பொதுத்தமிழ் & GK வினாக்கள், Flashcards, 20 Mock Tests & தினசரி நடப்பு நிகழ்வுகள்.
   </p>
 
   <!-- CTA Buttons -->
@@ -1256,11 +1256,20 @@
     </div>
   </section>
 
+  <!-- Live Daily TNPSC News / Current Affairs Card -->
+  <section class="quiz-section" id="newsSection" style="display:none; margin-top: 16px;">
+    <div class="quiz-header" style="margin-bottom: 10px;">
+      <div class="quiz-badge-live" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.4);">தினசரி செய்திகள் · NEWS</div>
+      <a href="https://play.google.com/store/apps/details?id=com.vetritnpsc.app" target="_blank" style="font-size: 0.78rem; color: #fde047; text-decoration: none; font-weight: 700;">App-ல் முழுதும் ➔</a>
+    </div>
+    <div id="newsFeedList" style="display: flex; flex-direction: column; gap: 10px;"></div>
+  </section>
+
   <!-- 2x2 Feature Grid -->
   <div class="feature-grid">
 
     <!-- Card 1: 6-12 சமச்சீர் பொதுத்தமிழ் -->
-    <div class="feature-card">
+    <div class="feature-card" style="cursor:pointer;" onclick="document.getElementById('quizSection').scrollIntoView({behavior:'smooth'})">
       <div class="card-icon-wrap">
         <!-- 3D Book Icon -->
         <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1330,7 +1339,7 @@
         </svg>
       </div>
       <div class="card-text">
-        <span class="card-title-main">50 வினாக்கள்</span>
+        <span class="card-title-main">20 முழு</span>
         <span class="card-title-sub">Mock Tests</span>
       </div>
     </div>
@@ -1352,8 +1361,8 @@
         </svg>
       </div>
       <div class="card-text">
-        <span class="card-title-main">தவறுகளை</span>
-        <span class="card-title-sub">கற்கும் Revise</span>
+        <span class="card-title-main">Flashcards &</span>
+        <span class="card-title-sub">Smart Revise</span>
       </div>
     </div>
 
@@ -1434,6 +1443,19 @@
         const data = await res.json();
         if (data.questions && data.questions.length > 0) {
           questionsPool = data.questions;
+        }
+        if (data.news && data.news.length > 0) {
+          const ns = document.getElementById('newsSection');
+          const list = document.getElementById('newsFeedList');
+          if (ns && list) {
+            list.innerHTML = data.news.slice(0, 3).map(n => `
+              <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px; text-align: left;">
+                <div style="font-weight: 800; font-size: 0.92rem; color: #ffffff; margin-bottom: 4px;">📌 ${n.title}</div>
+                <div style="font-size: 0.82rem; color: rgba(243,232,255,0.82); line-height: 1.45;">${n.body}</div>
+              </div>
+            `).join('');
+            ns.style.display = 'block';
+          }
         }
       }
     } catch (e) {
@@ -1554,9 +1576,9 @@
     }
 
     // Viral Share URLs
-    const shareText = `🎯 நான் வெற்றி TNPSC தினசரி மாதிரித் தேர்வில் ${userScore}/${totalQCount} மதிப்பெண் பெற்றுள்ளேன் (${rank})! நீங்களும் உங்கள் அறிவை சோதிக்க வாருங்கள்: https://vetri-tnpsc-content.vercel.app`;
+    const shareText = `🎯 நான் வெற்றி TNPSC தினசரி மாதிரித் தேர்வில் ${userScore}/${totalQCount} மதிப்பெண் பெற்றுள்ளேன் (${rank})! நீங்களும் இலவசமாகப் பயிற்சி செய்யுங்கள்: https://vetri-tnpsc-content.vercel.app\n📲 Android App: https://play.google.com/store/apps/details?id=com.vetritnpsc.app`;
     shareWaBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-    shareTgBtn.href = `https://t.me/share/url?url=https://vetri-tnpsc-content.vercel.app&text=${encodeURIComponent(`🎯 வெற்றி TNPSC தினசரி தேர்வு: எனது மதிப்பெண் ${userScore}/${totalQCount} (${rank})! 📚✨`)}`;
+    shareTgBtn.href = `https://t.me/share/url?url=${encodeURIComponent('https://play.google.com/store/apps/details?id=com.vetritnpsc.app')}&text=${encodeURIComponent(`🎯 வெற்றி TNPSC தினசரி தேர்வு: எனது மதிப்பெண் ${userScore}/${totalQCount} (${rank})! 500+ வினாக்கள் & 20 Mock Tests இலவசம் 📚✨`)}`;
   }
 
   // VIP Interactive Handlers
@@ -1622,7 +1644,7 @@
     <img src="icon-512.png" alt="Vetri TNPSC" class="banner-icon">
     <div class="banner-info">
       <span class="banner-title">Vetri TNPSC App</span>
-      <span class="banner-sub">Google Play Store · இலவசம்</span>
+      <span class="banner-sub">500+ Qs · 20 Mock Tests · இலவசம்</span>
     </div>
   </div>
   <a href="https://play.google.com/store/apps/details?id=com.vetritnpsc.app" class="banner-btn" target="_blank">
