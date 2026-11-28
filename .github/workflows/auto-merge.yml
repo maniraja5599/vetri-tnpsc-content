@@ -37,8 +37,11 @@ jobs:
       - name: Check and merge
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Push alert to app users after a merge (skipped if not set).
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
-          cp .github/check.js .github/approved.js /tmp/
+          cp .github/check.js .github/approved.js scripts/notify_push.py /tmp/
+          pip install -q google-auth requests || true
           gh label create hold --color B60205 --description "Do not auto-merge" --force >/dev/null
           prs=$(gh pr list --state open --base main --json number,headRefName,title,labels \
             --jq '[.[] | select(.headRefName | startswith("ca-")) | select(.title | startswith("Current affairs")) | select([.labels[].name] | index("hold") | not)] | sort_by(.number) | .[].number')
@@ -56,6 +59,9 @@ jobs:
               if gh pr merge "$n" --squash --delete-branch; then
                 git fetch -q origin main
                 echo "Merged #$n"
+                # A merge with GITHUB_TOKEN does not start other workflows,
+                # so the push alert is sent from here. Never fails the job.
+                python /tmp/notify_push.py /tmp/base.json /tmp/new.json || echo "Push alert failed (ignored)."
               else
                 gh pr comment "$n" -b "Not auto-merged: merge failed (probably a conflict with main)."
                 gh pr edit "$n" --add-label hold
