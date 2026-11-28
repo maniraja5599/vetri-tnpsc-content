@@ -1181,14 +1181,13 @@
         <div class="vip-badge-row">
           <span class="vip-badge">👑 VIP MEGA PASS</span>
           <div class="vip-price-tag">
-            <span class="vip-old-price">₹199</span>
             <span class="vip-new-price">₹29</span>
           </div>
         </div>
         <div class="vip-title">Group 4 & 2 முழுமையான 50-வினா மாதிரித் தேர்வு & கோல்டன் PDF</div>
         <ul class="vip-features">
-          <li><span>✔</span> <b>50 வினாக்கள் முழு OMR Mock Test</b> (தேர்வுக்கூட அனுபவம் + ரேங்க்)</li>
-          <li><span>✔</span> <b>6-12 சமச்சீர் பொதுத்தமிழ் 1,000 வினா-விடை கையேடு</b> (Direct PDF)</li>
+          <li><span>✔</span> <b>50 வினாக்கள் முழு OMR Mock Test</b> (தேர்வுக்கூட அனுபவம்)</li>
+          <li><span>✔</span> <b>6-12 சமச்சீர் பொதுத்தமிழ் வினா-விடை கையேடு</b> (Direct PDF)</li>
           <li><span>✔</span> <b>விளக்கமான விடைக் குறிப்புகள் & புத்தகப் பக்க எண்கள்</b></li>
         </ul>
 
@@ -1436,6 +1435,11 @@
     }
   ];
 
+  // content.json text is data, never HTML: escape before using innerHTML.
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
   async function loadQuizData() {
     try {
       const res = await fetch('content.json');
@@ -1450,8 +1454,8 @@
           if (ns && list) {
             list.innerHTML = data.news.slice(0, 3).map(n => `
               <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px; text-align: left;">
-                <div style="font-weight: 800; font-size: 0.92rem; color: #ffffff; margin-bottom: 4px;">📌 ${n.title}</div>
-                <div style="font-size: 0.82rem; color: rgba(243,232,255,0.82); line-height: 1.45;">${n.body}</div>
+                <div style="font-weight: 800; font-size: 0.92rem; color: #ffffff; margin-bottom: 4px;">📌 ${esc(n.title)}</div>
+                <div style="font-size: 0.82rem; color: rgba(243,232,255,0.82); line-height: 1.45;">${esc(n.body)}</div>
               </div>
             `).join('');
             ns.style.display = 'block';
@@ -1491,7 +1495,7 @@
     (q.o || []).forEach((optText, idx) => {
       const btn = document.createElement('button');
       btn.className = 'quiz-opt-btn';
-      btn.innerHTML = `<span class="opt-letter">${letters[idx] || (idx+1)}</span><span>${optText}</span>`;
+      btn.innerHTML = `<span class="opt-letter">${letters[idx] || (idx+1)}</span><span>${esc(optText)}</span>`;
       btn.onclick = () => handleSelectOption(idx, q.a, q.e);
       quizOptions.appendChild(btn);
     });
