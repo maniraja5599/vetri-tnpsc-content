@@ -1,0 +1,40 @@
+# Push alert to app users when the owner merges or pushes a content.json
+# change (news or new questions). Merges done by the auto-merge workflow use
+# GITHUB_TOKEN and do not trigger this; that workflow sends its own alert.
+name: Push alert for new content
+
+on:
+  push:
+    branches: [main]
+    paths: ['content.json']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: push-alert
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Send alert if news or questions were added
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          pip install -q google-auth requests
+          # Compare with main before this push (covers pushes of several commits).
+          if ! git show "$BEFORE:content.json" > /tmp/old.json 2>/dev/null; then
+            echo "No previous content.json: skipping."; exit 0
+          fi
+          python scripts/notify_push.py /tmp/old.json content.json
