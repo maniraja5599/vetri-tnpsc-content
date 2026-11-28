@@ -8,9 +8,10 @@ Usage: python scripts/notify_push.py OLD_content.json NEW_content.json [--dry-ru
 - Nothing new        -> no message.
 
 Sends to the Firebase Cloud Messaging topic "all" of project vetri-tnpsc.
-Needs the env var FIREBASE_SERVICE_ACCOUNT (the service account JSON, from a
-GitHub secret). Without it the script prints what it would send and exits 0,
-so a missing secret never fails a merge.
+Credentials: keyless Workload Identity Federation in GitHub Actions
+(google-github-actions/auth sets GOOGLE_APPLICATION_CREDENTIALS), or a
+FIREBASE_SERVICE_ACCOUNT JSON key as a fallback. Without either the script
+prints what it would send and exits 0, so it never fails a merge.
 """
 
 import json
@@ -53,15 +54,33 @@ def build_message(old, new):
     return None
 
 
-def send(msg, sa_json):
+SCOPES = ["https://www.googleapis.com/auth/firebase.messaging"]
+
+
+def credentials():
+    """Keyless first: in GitHub Actions, google-github-actions/auth
+    (Workload Identity Federation) sets GOOGLE_APPLICATION_CREDENTIALS to a
+    short-lived config, no secret involved. FIREBASE_SERVICE_ACCOUNT (a JSON
+    key in a secret) is only a fallback. Returns None if neither is set."""
+    if os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"):
+        import google.auth
+
+        creds, _ = google.auth.default(scopes=SCOPES)
+        return creds
+    sa = os.environ.get("FIREBASE_SERVICE_ACCOUNT", "").strip()
+    if sa:
+        from google.oauth2 import service_account
+
+        return service_account.Credentials.from_service_account_info(
+            json.loads(sa), scopes=SCOPES
+        )
+    return None
+
+
+def send(msg, creds):
     # Imported here so --dry-run and tests work without these packages.
-    from google.oauth2 import service_account
     from google.auth.transport.requests import AuthorizedSession
 
-    creds = service_account.Credentials.from_service_account_info(
-        json.loads(sa_json),
-        scopes=["https://www.googleapis.com/auth/firebase.messaging"],
-    )
     session = AuthorizedSession(creds)
     body = {
         "message": {
@@ -89,22 +108,34 @@ def send(msg, sa_json):
     return True
 
 
+TEST_MESSAGE = {
+    "title": "✅ Vetri TNPSC test alert",
+    "body": "Push alerts are working. Tap to open the News screen.",
+    "target": "news",
+}
+
+
 def main(argv):
-    args = [a for a in argv if not a.startswith("--")]
-    if len(args) != 2:
-        print(__doc__)
-        return 2
-    msg = build_message(load(args[0]), load(args[1]))
+    if "--test" in argv:
+        # Manual check from the Actions tab: sends one fixed alert.
+        msg = TEST_MESSAGE
+    else:
+        args = [a for a in argv if not a.startswith("--")]
+        if len(args) != 2:
+            print(__doc__)
+            return 2
+        msg = build_message(load(args[0]), load(args[1]))
     if msg is None:
         print("Nothing new: no push sent.")
         return 0
     print(f"Push: {msg['title']} | {msg['body']} -> {msg['target']}")
-    sa = os.environ.get("FIREBASE_SERVICE_ACCOUNT", "").strip()
-    if "--dry-run" in argv or not sa:
-        if not sa:
-            print("FIREBASE_SERVICE_ACCOUNT not set: not sending.")
+    if "--dry-run" in argv:
         return 0
-    return 0 if send(msg, sa) else 1
+    creds = credentials()
+    if creds is None:
+        print("No Google credentials (keyless auth or FIREBASE_SERVICE_ACCOUNT): not sending.")
+        return 0
+    return 0 if send(msg, creds) else 1
 
 
 if __name__ == "__main__":
