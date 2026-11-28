@@ -183,11 +183,10 @@ async function handleVipRequest(chatId, userId) {
   const text =
     `👑 *வெற்றி TNPSC VIP MEGA PASS (அறிமுக சலுகை: ₹29 மட்டும்!)* 🌟\n\n` +
     `TNPSC Group 4 & 2 தேர்வில் அதிக மதிப்பெண் பெற பிரத்யேக VIP வசதிகள்:\n\n` +
-    `✅ *1. முழு 50 வினாக்கள் OMR மாதிரி தேர்வுகள்:* நேரடி தேர்வு அனுபவம் & மாநில அளவிலான மதிப்பீடு.\n` +
-    `✅ *2. 6-12 சமச்சீர் 1,000 வினா-விடை Golden Revision PDF:* தேர்வு நோக்கில் முழு தொகுப்பு.\n` +
+    `✅ *1. முழு 50 வினாக்கள் OMR மாதிரி தேர்வுகள்:* நேரடி தேர்வு அனுபவம்.\n` +
+    `✅ *2. 6-12 சமச்சீர் வினா-விடை Golden Revision PDF:* தேர்வு நோக்கில் முழு தொகுப்பு.\n` +
     `✅ *3. 2026 பிரத்யேக நடப்பு நிகழ்வுகள் & Shortcut குறிப்புகள்.*\n` +
-    `✅ *4. வாழ்நாள் அணுகல் (Lifetime Access) & விளம்பரமில்லா பயிற்சி!*\n\n` +
-    `🔥 *கட்டணம்:* வெறும் *₹29 மட்டும்!* ~₹199~ (85% தள்ளுபடி)\n\n` +
+    `🔥 *கட்டணம்:* வெறும் *₹29 மட்டும்!*\n\n` +
     `💳 *நேரடி UPI விவரங்கள்:*\n` +
     `• UPI ID: \`maniraja@kvb\`\n` +
     `• கணக்கு பெயர்: *Mani Raja*\n` +
@@ -211,9 +210,40 @@ async function handleVipRequest(chatId, userId) {
 }
 
 // Main serverless handler
+// Telegram legacy Markdown: escape characters that start formatting or links,
+// so user-controlled text (names) can never inject links or break messages.
+function escapeMd(s) {
+  return String(s).replace(/[_*`\[\]]/g, '\\$&');
+}
+
+// Display name from a Telegram user, safe for Markdown and kept short.
+function safeName(from) {
+  const raw = (from && from.first_name) || 'தோழரே';
+  return escapeMd(raw.replace(/[\r\n]+/g, ' ').slice(0, 32));
+}
+
+// Constant-time string comparison for the webhook secret.
+function sameSecret(a, b) {
+  const crypto = require('crypto');
+  const x = Buffer.from(String(a || ''));
+  const y = Buffer.from(String(b || ''));
+  return x.length === y.length && crypto.timingSafeEqual(x, y);
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(200).send('Vetri TNPSC Telegram Webhook Serverless Function is active 🚀');
+  }
+
+  // Only Telegram knows this secret (set via setWebhook secret_token).
+  // Rejects forged updates sent straight to this URL.
+  const secret = process.env.TELEGRAM_WEBHOOK_SECRET;
+  if (secret) {
+    if (!sameSecret(req.headers['x-telegram-bot-api-secret-token'], secret)) {
+      return res.status(401).json({ ok: false });
+    }
+  } else {
+    console.warn('TELEGRAM_WEBHOOK_SECRET is not set: webhook requests are not verified');
   }
 
   const update = req.body;
@@ -270,7 +300,8 @@ module.exports = async (req, res) => {
     const chatId = message.chat.id;
     const userId = message.from.id;
     const text = message.text.trim();
-    const firstName = message.from.first_name || 'தோழரே';
+    const firstName = safeName(message.from);
+    const plainName = ((message.from && message.from.first_name) || 'தோழரே').slice(0, 32);
 
     // Handle /start (with possible referral parameter: /start ref_12345)
     if (text.startsWith('/start')) {
@@ -278,8 +309,15 @@ module.exports = async (req, res) => {
       if (parts.length > 1) {
         const param = parts[1];
         if (param.startsWith('ref_')) {
-          const inviterId = param.replace('ref_', '');
-          if (inviterId && inviterId !== String(userId)) {
+          const inviterId = param.slice('ref_'.length);
+          // Only a real user id (positive number), never a channel/group
+          // (@name or -100…), so nobody can make the bot post elsewhere.
+          // Only from private chats, so the message comes from a real start.
+          if (
+            /^[1-9]\d{0,15}$/.test(inviterId) &&
+            inviterId !== String(userId) &&
+            message.chat.type === 'private'
+          ) {
             // Notify inviter
             try {
               await tg('sendMessage', {
@@ -300,8 +338,8 @@ module.exports = async (req, res) => {
       const welcomeText = 
         `வணக்கம் ${firstName}! 🎯 *Vetri TNPSC* அதிகாரப்பூர்வ வினாடி வினா பாட்டிற்கு உங்களை அன்போடு வரவேற்கிறோம்! 📚✨\n\n` +
         `TNPSC Group 4, Group 2 & VAO தேர்வுகளுக்கு தயாராக நீங்கள் விரும்பியவாறு பயிற்சி பெறலாம்:\n\n` +
-        `📲 */app* — *Play Store Android App* (100+ மாதிரி தேர்வுகள் & சமச்சீர் வினாடி வினா - 100% இலவசம்!)\n` +
-        `👑 */vip* — *VIP Mega Pass* (50 வினாக்கள் முழு OMR மாதிரித் தேர்வு & 1,000 Qs PDF) - ₹29 மட்டும்!\n` +
+        `📲 */app* — *Play Store Android App* (மாதிரி தேர்வுகள் & சமச்சீர் வினாடி வினா - இலவசம்)\n` +
+        `👑 */vip* — *VIP Mega Pass* (50 வினாக்கள் முழு OMR மாதிரித் தேர்வு & Golden Revision PDF) - ₹29 மட்டும்!\n` +
         `🔹 */quiz* — உடனடி நேரடி வினாடி வினா\n` +
         `🔹 */tamil* — 6-12 சமச்சீர் பொதுத்தமிழ் இலக்கணம் & இலக்கியம்\n` +
         `🔹 */ca* — இன்றைய புதிய நடப்பு நிகழ்வுகள்\n` +
@@ -380,7 +418,7 @@ module.exports = async (req, res) => {
     // Default reply
     await tg('sendMessage', {
       chat_id: chatId,
-      text: `வணக்கம் ${firstName}! Play Store ஆப் பெற /app அல்லது VIP Mega Pass பெற /vip அல்லது வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
+      text: `வணக்கம் ${plainName}! Play Store ஆப் பெற /app அல்லது VIP Mega Pass பெற /vip அல்லது வினாடி வினா எழுத /quiz அல்லது சமச்சீர் தமிழ் படிக்க /tamil அல்லது நண்பர்களை அழைக்க /invite அல்லது Study Material பெற /pdf என டைப் செய்யவும்! 🎯`,
     });
 
   } catch (err) {

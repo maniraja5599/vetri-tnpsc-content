@@ -1,0 +1,12 @@
+# Keep internal notes, logs and scripts off the public website.
+# The site needs: index.html, privacy-policy.html, app-ads.txt, content.json,
+# icon-512.png, og-image.png, materials/, posts/ and api/.
+*.md
+.agent/
+.github/
+scripts/
+pyq/
+shorts/
+production_*.png
+.env
+.env.*

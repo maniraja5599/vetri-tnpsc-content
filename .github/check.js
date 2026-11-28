@@ -46,6 +46,11 @@ for (const q of added) {
   if (![q.t, q.q, q.qe, q.e].every(text)) fail(`${where}: empty text field`);
   if (!four(q.o) || !four(q.oe)) fail(`${where}: needs 4 different options in o and oe`);
   if (!Number.isInteger(q.a) || q.a < 0 || q.a > 3) fail(`${where}: answer index must be 0-3`);
+  // Question text is shown on phones, the website and Telegram: plain text only.
+  for (const v of [q.t, q.q, q.qe, q.e, ...q.o, ...q.oe]) {
+    if (/[<>]|https?:\/\/|javascript:|www\./i.test(v)) fail(`${where}: HTML or links are not allowed`);
+    if (v.length > 400) fail(`${where}: text longer than 400 characters`);
+  }
 }
 
 console.log(`OK: ${added.length} new questions, version ${base.version} -> ${next.version}`);
