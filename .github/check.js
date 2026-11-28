@@ -10,8 +10,16 @@ let base, next;
 try { base = JSON.parse(fs.readFileSync(basePath, 'utf8').replace(/^﻿/, '')); } catch (e) { fail('main content.json does not parse'); }
 try { next = JSON.parse(fs.readFileSync(newPath, 'utf8').replace(/^﻿/, '')); } catch (e) { fail('PR content.json is not valid JSON'); }
 
+// A real calendar date: "2026-02-30" has the right shape but is rejected
+// (JavaScript would silently turn it into 2 March).
+const realDate = (s) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s || '')) return false;
+  const t = new Date(s + 'T00:00:00Z');
+  return !isNaN(t) && t.toISOString().slice(0, 10) === s;
+};
+
 if (!(next.version > base.version)) fail('version was not increased');
-if (!/^\d{4}-\d{2}-\d{2}$/.test(next.updated || '')) fail('updated is not a date');
+if (!realDate(next.updated)) fail('updated is not a date');
 
 for (const key of Object.keys(base)) {
   if (['version', 'updated', 'questions', 'news'].includes(key)) continue;
@@ -49,7 +57,7 @@ for (const q of added) {
   const where = `question ${q.id}`;
   if (!/^ca\d{8}\d+$/.test(q.id)) fail(`${where}: bad id`);
   if (q.s !== 'ca') fail(`${where}: subject must be "ca"`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(q.d || '')) fail(`${where}: bad date`);
+  if (!realDate(q.d)) fail(`${where}: bad date`);
   if (![q.t, q.q, q.qe, q.e].every(text)) fail(`${where}: empty text field`);
   if (!four(q.o) || !four(q.oe)) fail(`${where}: needs 4 different options in o and oe`);
   if (!Number.isInteger(q.a) || q.a < 0 || q.a > 3) fail(`${where}: answer index must be 0-3`);
@@ -90,7 +98,7 @@ for (const n of next.news.slice(0, newCount)) {
   if (!text(n.title) || !text(n.body)) fail(`${where}: title and body are required`);
   plain(n.title, where, 90);
   plain(n.body, where, 300);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(n.d || '')) fail(`${where}: needs a date "d" (yyyy-mm-dd)`);
+  if (!realDate(n.d)) fail(`${where}: needs a real date "d" (yyyy-mm-dd)`);
   const age = (updated - new Date(n.d + 'T00:00:00Z')) / 86400000;
   if (!(age >= 0 && age <= 3)) fail(`${where}: date must be within 3 days before "updated"`);
   if (n.url !== undefined && !okUrl(n.url)) fail(`${where}: url must be an https .gov.in / .nic.in link`);

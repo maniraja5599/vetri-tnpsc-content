@@ -11,9 +11,9 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: push-alert
-  cancel-in-progress: false
+# No concurrency group on purpose: GitHub would replace a pending run with a
+# newer one, and that run's "before" already includes the older change, so
+# its alert would be lost. Each push compares only its own before/after.
 
 jobs:
   notify:

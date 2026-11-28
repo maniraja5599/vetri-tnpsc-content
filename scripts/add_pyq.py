@@ -40,7 +40,17 @@ def problems(q):
         out.append("needs 4 different options")
     if not (isinstance(q.get("a"), int) and 0 <= q["a"] <= 3):
         out.append("answer index must be 0-3")
-    for v in [q.get("t"), q.get("q"), q.get("e"), *(o or [])]:
+    # Optional English text: same rules as the Tamil.
+    if "qe" in q and not (isinstance(q["qe"], str) and q["qe"].strip()):
+        out.append("qe must be text")
+    oe = q.get("oe")
+    if "oe" in q and not (isinstance(oe, list) and len(oe) == 4
+                          and all(isinstance(x, str) and x.strip() for x in oe)
+                          and len(set(oe)) == 4):
+        out.append("oe needs 4 different options")
+    texts = [q.get("t"), q.get("q"), q.get("e"), q.get("qe"), *(o or []),
+             *(oe if isinstance(oe, list) else [])]
+    for v in texts:
         if isinstance(v, str) and (BAD_TEXT.search(v) or len(v) > 400):
             out.append("HTML/link or text over 400 characters")
             break
@@ -67,17 +77,20 @@ def main(argv):
 
     add, skipped = [], []
     for q in pyq["questions"]:
+        qid = q.get("id")
         if q.get("status") != "verified":
-            skipped.append((q.get("id"), f"status {q.get('status')!r}, not verified"))
+            skipped.append((qid, f"status {q.get('status')!r}, not verified"))
             continue
-        if q["id"] in have:
-            skipped.append((q["id"], "already in content.json"))
-            continue
+        # Check fields first, so a record without an id is reported, not a crash.
         bad = problems(q)
         if bad:
-            skipped.append((q["id"], "; ".join(bad)))
+            skipped.append((qid, "; ".join(bad)))
+            continue
+        if qid in have:
+            skipped.append((qid, "already in content.json or earlier in this file"))
             continue
         add.append(to_content(q))
+        have.add(qid)  # a second record with the same id is skipped
 
     print(f"Source: {pyq.get('source')}")
     print(f"To add: {len(add)}")
